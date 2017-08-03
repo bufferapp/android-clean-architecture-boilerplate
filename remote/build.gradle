@@ -1,0 +1,30 @@
+apply plugin: 'kotlin'
+
+configurations.all {
+    resolutionStrategy {
+        force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    }
+}
+
+dependencies {
+    def cacheDependencies = rootProject.ext.cacheDependencies
+    def cacheTestDependencies = rootProject.ext.cacheTestDependencies
+
+    provided cacheDependencies.javaxAnnotation
+
+    compile cacheDependencies.kotlin
+    compile cacheDependencies.javaxInject
+    compile cacheDependencies.rxKotlin
+    compile cacheDependencies.sqlBrite
+    compile cacheDependencies.gson
+
+    testCompile cacheTestDependencies.junit
+    testCompile cacheTestDependencies.mockito
+    testCompile cacheTestDependencies.assertj
+    testCompile cacheTestDependencies.robolectric
+
+    compile  "com.google.dagger:dagger:2.8"
+    provided 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger 2
+
+    compile project(':data')
+}
