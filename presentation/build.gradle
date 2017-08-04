@@ -7,5 +7,17 @@ configurations.all {
 }
 
 dependencies {
+    def presentationDependencies = rootProject.ext.cacheDependencies
+    def presentationTestDependencies = rootProject.ext.cacheTestDependencies
 
+    compile presentationDependencies.javaxAnnotation
+
+    compile presentationDependencies.kotlin
+    compile presentationDependencies.javaxInject
+    compile presentationDependencies.rxKotlin
+    testCompile presentationTestDependencies.junit
+    testCompile presentationTestDependencies.mockito
+    testCompile presentationTestDependencies.assertj
+
+    compile project(':domain')
 }

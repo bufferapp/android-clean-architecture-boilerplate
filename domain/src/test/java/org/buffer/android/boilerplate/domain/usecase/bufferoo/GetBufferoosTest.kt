@@ -6,13 +6,14 @@ import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Completable
 import org.buffer.android.boilerplate.domain.executor.PostExecutionThread
 import org.buffer.android.boilerplate.domain.executor.ThreadExecutor
+import org.buffer.android.boilerplate.domain.interactor.bufferoo.GetBufferoos
 import org.buffer.android.boilerplate.domain.repository.BufferooRepository
 import org.junit.Before
 import org.junit.Test
 
 class GetBufferoosTest {
 
-    private lateinit var clearBufferoos: ClearBufferoos
+    private lateinit var clearBufferoos: GetBufferoos
 
     private lateinit var mockThreadExecutor: ThreadExecutor
     private lateinit var mockPostExecutionThread: PostExecutionThread
@@ -23,7 +24,7 @@ class GetBufferoosTest {
         mockThreadExecutor = mock()
         mockPostExecutionThread = mock()
         mockBufferooRepository = mock()
-        clearBufferoos = ClearBufferoos(mockBufferooRepository, mockThreadExecutor,
+        clearBufferoos = GetBufferoos(mockBufferooRepository, mockThreadExecutor,
                 mockPostExecutionThread)
     }
 
