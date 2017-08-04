@@ -9,7 +9,7 @@ import retrofit2.http.GET
  */
 interface BufferooService {
 
-    @GET("team.json")
+    @GET("team-abk9.json")
     fun getBufferoos(): Single<BufferooResponse>
 
     class BufferooResponse {
