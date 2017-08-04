@@ -29,7 +29,7 @@ ext {
     roomVersion = '1.0.0-alpha6'
 
     //Testing
-    robolectricVersion = '3.3.2'
+    robolectricVersion = '3.4'
     jUnitVersion = '4.12'
     assertJVersion = '1.7.1'
     mockitoVersion = '1.9.5'
@@ -72,6 +72,7 @@ ext {
 
     dataTestDependencies = [
             junit:              "junit:junit:${jUnitVersion}",
+            kotlinJUnit:        "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
             assertj:            "org.assertj:assertj-core:${assertJVersion}",
             mockito:            "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
             robolectric:        "org.robolectric:robolectric:${robolectricVersion}"
@@ -93,6 +94,7 @@ ext {
 
     cacheTestDependencies = [
             junit:              "junit:junit:${jUnitVersion}",
+            kotlinJUnit:        "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
             assertj:            "org.assertj:assertj-core:${assertJVersion}",
             mockito:            "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
             robolectric:        "org.robolectric:robolectric:${robolectricVersion}",
@@ -120,6 +122,7 @@ ext {
 
     remoteTestDependencies = [
             junit:              "junit:junit:${jUnitVersion}",
+            kotlinJUnit:        "org.jetbrains.kotlin:kotlin-test-junit:${kotlin_version}",
             assertj:            "org.assertj:assertj-core:${assertJVersion}",
             mockito:            "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
             supportRunner:      "com.android.support.test:runner:${androidSupportRunnerVersion}",

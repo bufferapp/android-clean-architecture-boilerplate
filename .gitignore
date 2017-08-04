@@ -8,8 +8,3 @@
 *.iml
 */build
 gradle.properties
-/presentation
-/network
-/cache
-/data
-/ui-mobile
