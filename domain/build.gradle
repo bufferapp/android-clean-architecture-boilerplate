@@ -15,4 +15,8 @@ dependencies {
     compile domainDependencies.rxKotlin
     compile domainDependencies.kotlin
 
+    testCompile domainTestDependencies.junit
+    testCompile domainTestDependencies.mockito
+    testCompile domainTestDependencies.assertj
+
 }

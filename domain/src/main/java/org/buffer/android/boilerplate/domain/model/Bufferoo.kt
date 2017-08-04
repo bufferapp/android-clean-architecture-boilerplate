@@ -1,6 +1,6 @@
 package org.buffer.android.boilerplate.domain.model
 
 /**
- * Created by joebirch on 03/08/2017.
+ * Representation for a [Bufferoo] fetched from an external layer data source
  */
 class Bufferoo(val name: String, val title: String, val avatar: String)

@@ -6,8 +6,7 @@ import org.buffer.android.boilerplate.data.mapper.BufferooMapper
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.data.source.BufferooDataStoreFactory
 import org.buffer.android.boilerplate.domain.model.Bufferoo
-import org.buffer.android.boilerplate.domain.model.BufferooRepository
-
+import org.buffer.android.boilerplate.domain.repository.BufferooRepository
 import javax.inject.Inject
 
 /**

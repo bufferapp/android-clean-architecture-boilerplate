@@ -5,7 +5,9 @@ import io.reactivex.Single
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 
 /**
- * Created by joebirch on 03/08/2017.
+ * Interface defining methods for the data operations related to Bufferroos.
+ * This is to be implemented by external data source layers, setting the requirements for the
+ * operations that need to be implemented
  */
 interface BufferooDataStore {
 

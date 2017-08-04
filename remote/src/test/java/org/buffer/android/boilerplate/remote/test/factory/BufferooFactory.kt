@@ -1,6 +1,6 @@
 package org.buffer.android.boilerplate.remote.test.factory
 
-import org.buffer.android.boilerplate.data.test.factory.DataFactory.Factory.randomUuid
+import org.buffer.android.boilerplate.domain.test.factory.DataFactory.Factory.randomUuid
 import org.buffer.android.boilerplate.remote.BufferooService
 import org.buffer.android.boilerplate.remote.model.BufferooModel
 
