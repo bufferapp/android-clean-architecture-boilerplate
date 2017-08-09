@@ -16,18 +16,18 @@ Clean Architecture will not be appropriate for every project, so it is down to y
 
 ## Languages, libraries and tools used
 
-* Kotlin
+* [Kotlin](https://kotlinlang.org/)
 * Android Support Libraries
-* RxJava2
-* Dagger 2 (2.11)
-* Glide
-* Retrofit
-* OkHttp
-* Gson
-* Timber
-* Mockito
-* Espresso
-* Robolectric
+* [RxJava2](https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0)
+* [Dagger 2 (2.11)](https://github.com/google/dagger)
+* [Glide](https://github.com/bumptech/glide)
+* [Retrofit](http://square.github.io/retrofit/)
+* [OkHttp](http://square.github.io/okhttp/)
+* [Gson](https://github.com/google/gson)
+* [Timber](https://github.com/JakeWharton/timber)
+* [Mockito](http://site.mockito.org/)
+* [Espresso](https://developer.android.com/training/testing/espresso/index.html)
+* [Robolectric](http://robolectric.org/)
 
 ## Requirements
 
