@@ -11,6 +11,10 @@ interface BrowseBufferoosContract {
 
     interface View : BaseView<Presenter> {
 
+        fun showProgress()
+
+        fun hideProgress()
+
         fun showBufferoos(bufferoos: List<BufferooView>)
 
         fun hideBufferoos()

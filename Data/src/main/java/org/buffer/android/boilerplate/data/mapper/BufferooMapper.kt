@@ -1,15 +1,15 @@
 package org.buffer.android.boilerplate.data.mapper
 
 import org.buffer.android.boilerplate.data.model.BufferooEntity
-import org.buffer.android.boilerplate.domain.mapper.Mapper
 import org.buffer.android.boilerplate.domain.model.Bufferoo
+import javax.inject.Inject
 
 
 /**
  * Map a [BufferooEntity] to and froma a [Bufferoo] instance when data is moving between
  * this later and the Domain layer
  */
-class BufferooMapper : Mapper<BufferooEntity, Bufferoo> {
+class BufferooMapper @Inject constructor(): Mapper<BufferooEntity, Bufferoo> {
 
     /**
      * Map a [BufferooEntity] instance to a [Bufferoo] instance

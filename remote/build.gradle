@@ -1,5 +1,8 @@
 apply plugin: 'kotlin'
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 dependencies {
     def remoteDependencies = rootProject.ext.remoteDependencies
     def remoteTestDependencies = rootProject.ext.remoteTestDependencies
@@ -17,6 +20,7 @@ dependencies {
     compile remoteDependencies.retrofitAdapter
 
     testCompile remoteTestDependencies.junit
+    testCompile remoteTestDependencies.kotlinJUnit
     testCompile remoteTestDependencies.mockito
     testCompile remoteTestDependencies.assertj
 

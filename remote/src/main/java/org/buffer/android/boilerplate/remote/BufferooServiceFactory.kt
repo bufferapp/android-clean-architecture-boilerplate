@@ -16,13 +16,13 @@ import java.util.concurrent.TimeUnit
  */
 object BufferooServiceFactory {
 
-    fun makeBuffeoorService(): BufferooService {
+    fun makeBuffeoorService(isDebug: Boolean): BufferooService {
         val okHttpClient = makeOkHttpClient(
-                makeLoggingInterceptor())
+                makeLoggingInterceptor(isDebug))
         return makeBufferooService(okHttpClient, makeGson())
     }
 
-    fun makeBufferooService(okHttpClient: OkHttpClient, gson: Gson): BufferooService {
+    private fun makeBufferooService(okHttpClient: OkHttpClient, gson: Gson): BufferooService {
         val retrofit = Retrofit.Builder()
                 .baseUrl("https://joe-birch-dsdb.squarespace.com/s/")
                 .client(okHttpClient)
@@ -32,7 +32,7 @@ object BufferooServiceFactory {
         return retrofit.create(BufferooService::class.java)
     }
 
-    fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    private fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
                 .connectTimeout(120, TimeUnit.SECONDS)
@@ -40,7 +40,7 @@ object BufferooServiceFactory {
                 .build()
     }
 
-    fun makeGson(): Gson {
+    private fun makeGson(): Gson {
         return GsonBuilder()
                 .setLenient()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
@@ -48,12 +48,12 @@ object BufferooServiceFactory {
                 .create()
     }
 
-    fun makeLoggingInterceptor(): HttpLoggingInterceptor {
+    private fun makeLoggingInterceptor(isDebug: Boolean): HttpLoggingInterceptor {
         val logging = HttpLoggingInterceptor()
-       // logging.level = if (BuildConfig.DEBUG)
-         //   HttpLoggingInterceptor.Level.BODY
-        //else
-          //  HttpLoggingInterceptor.Level.NONE
+        logging.level = if (isDebug)
+            HttpLoggingInterceptor.Level.BODY
+        else
+          HttpLoggingInterceptor.Level.NONE
         return logging
     }
 

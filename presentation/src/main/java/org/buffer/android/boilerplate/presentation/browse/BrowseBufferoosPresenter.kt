@@ -1,7 +1,6 @@
 package org.buffer.android.boilerplate.presentation.browse
 
-import io.reactivex.disposables.Disposable
-import org.buffer.android.boilerplate.domain.interactor.BaseSingleObserver
+import io.reactivex.observers.DisposableSingleObserver
 import org.buffer.android.boilerplate.domain.interactor.bufferoo.GetBufferoos
 import org.buffer.android.boilerplate.domain.model.Bufferoo
 import org.buffer.android.boilerplate.presentation.mapper.BufferooMapper
@@ -12,7 +11,6 @@ class BrowseBufferoosPresenter @Inject constructor(val browseView: BrowseBuffero
                                                    val bufferooMapper: BufferooMapper):
         BrowseBufferoosContract.Presenter {
 
-    private var getBufferoosDisposable: Disposable? = null
 
     init {
         browseView.setPresenter(this)
@@ -23,32 +21,28 @@ class BrowseBufferoosPresenter @Inject constructor(val browseView: BrowseBuffero
     }
 
     override fun stop() {
-        if (getBufferoosDisposable != null) {
-            (getBufferoosDisposable as Disposable).dispose()
-        }
+        //getBufferoosUseCase.dispose()
     }
 
     override fun retrieveBufferoos() {
-        getBufferoosUseCase.buildUseCaseObservable(null)
-                .subscribe(BufferooSubscriber())
+        getBufferoosUseCase.execute(BufferooSubscriber())
     }
 
-    private inner class BufferooSubscriber: BaseSingleObserver<List<Bufferoo>>() {
-
-        override fun onSubscribe(d: Disposable) {
-            getBufferoosDisposable = d
+    internal fun handleGetBufferoosSuccess(bufferoos: List<Bufferoo>) {
+        browseView.hideErrorState()
+        if (bufferoos.isNotEmpty()) {
+            browseView.hideEmptyState()
+            browseView.showBufferoos(bufferoos.map { bufferooMapper.mapToView(it) })
+        } else {
+            browseView.hideBufferoos()
+            browseView.showEmptyState()
         }
+    }
+
+    inner class BufferooSubscriber: DisposableSingleObserver<List<Bufferoo>>() {
 
         override fun onSuccess(t: List<Bufferoo>) {
-            browseView.hideErrorState()
-            if (t.isNotEmpty()) {
-                browseView.hideEmptyState()
-                browseView.showBufferoos(t.map { bufferooMapper.mapToView(it) })
-            } else {
-                browseView.hideBufferoos()
-                browseView.showEmptyState()
-            }
-
+            handleGetBufferoosSuccess(t)
         }
 
         override fun onError(exception: Throwable) {

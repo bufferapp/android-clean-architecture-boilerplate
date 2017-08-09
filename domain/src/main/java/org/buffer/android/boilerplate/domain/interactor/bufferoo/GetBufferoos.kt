@@ -11,7 +11,7 @@ import javax.inject.Inject
 /**
  * Use case used for retreiving a [List] of [Bufferoo] instances from the [BufferooRepository]
  */
-open class GetBufferoos @Inject constructor(private val bufferooRepository: BufferooRepository,
+open class GetBufferoos @Inject constructor(val bufferooRepository: BufferooRepository,
                                             threadExecutor: ThreadExecutor,
                                             postExecutionThread: PostExecutionThread):
         SingleUseCase<List<Bufferoo>, Void?>(threadExecutor, postExecutionThread) {

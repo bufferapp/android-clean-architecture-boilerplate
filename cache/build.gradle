@@ -48,18 +48,18 @@ dependencies {
     def cacheDependencies = rootProject.ext.cacheDependencies
     def cacheTestDependencies = rootProject.ext.cacheTestDependencies
 
-    provided cacheDependencies.javaxAnnotation
+    compileOnly cacheDependencies.javaxAnnotation
 
-    compile project(':data')
+    implementation project(':data')
 
-    compile cacheDependencies.kotlin
-    compile cacheDependencies.javaxInject
-    compile cacheDependencies.rxKotlin
-    compile cacheDependencies.gson
+    implementation cacheDependencies.kotlin
+    implementation cacheDependencies.javaxInject
+    implementation cacheDependencies.rxKotlin
+    implementation cacheDependencies.gson
 
-    testCompile cacheTestDependencies.junit
-    testCompile cacheTestDependencies.kotlinJUnit
-    testCompile cacheTestDependencies.mockito
-    testCompile cacheTestDependencies.assertj
-    testCompile cacheTestDependencies.robolectric
+    testImplementation cacheTestDependencies.junit
+    testImplementation cacheTestDependencies.kotlinJUnit
+    testImplementation cacheTestDependencies.mockito
+    testImplementation cacheTestDependencies.assertj
+    testImplementation cacheTestDependencies.robolectric
 }

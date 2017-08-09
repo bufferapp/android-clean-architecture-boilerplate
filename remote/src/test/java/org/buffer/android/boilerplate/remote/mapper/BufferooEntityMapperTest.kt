@@ -1,6 +1,6 @@
 package org.buffer.android.boilerplate.remote.mapper
 
-import org.buffer.android.boilerplate.domain.test.factory.BufferooFactory
+import org.buffer.android.boilerplate.remote.test.factory.BufferooFactory
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

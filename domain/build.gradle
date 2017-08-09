@@ -1,5 +1,8 @@
 apply plugin: 'kotlin'
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
 configurations.all {
     resolutionStrategy {
         force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

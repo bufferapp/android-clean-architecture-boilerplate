@@ -1,9 +1,7 @@
 package org.buffer.android.boilerplate.presentation.browse
 
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
-import io.reactivex.Single
+import com.nhaarman.mockito_kotlin.*
+import io.reactivex.observers.DisposableSingleObserver
 import org.buffer.android.boilerplate.domain.interactor.bufferoo.GetBufferoos
 import org.buffer.android.boilerplate.domain.model.Bufferoo
 import org.buffer.android.boilerplate.presentation.mapper.BufferooMapper
@@ -17,16 +15,18 @@ import org.junit.runners.JUnit4
 class BrowseBufferoosPresenterTest {
 
     private lateinit var mockBrowseBufferoosView: BrowseBufferoosContract.View
-    private lateinit var mockGetBufferoos: GetBufferoos
     private lateinit var mockBufferooMapper: BufferooMapper
+    private lateinit var mockGetBufferoos: GetBufferoos
 
     private lateinit var browseBufferoosPresenter: BrowseBufferoosPresenter
+    private lateinit var captor: KArgumentCaptor<DisposableSingleObserver<List<Bufferoo>>>
 
     @Before
     fun setup() {
+        captor = argumentCaptor<DisposableSingleObserver<List<Bufferoo>>>()
         mockBrowseBufferoosView = mock()
-        mockGetBufferoos = mock()
         mockBufferooMapper = mock()
+        mockGetBufferoos = mock()
         browseBufferoosPresenter = BrowseBufferoosPresenter(mockBrowseBufferoosView,
                 mockGetBufferoos, mockBufferooMapper)
     }
@@ -34,74 +34,77 @@ class BrowseBufferoosPresenterTest {
     //<editor-fold desc="Retrieve Bufferoos">
     @Test
     fun retrieveBufferoosHidesErrorState() {
-        stubGetBufferoos(Single.just(BufferooFactory.makeBufferooList(2)))
-
         browseBufferoosPresenter.retrieveBufferoos()
+
+        verify(mockGetBufferoos).execute(captor.capture(), eq(null))
+        captor.firstValue.onSuccess(BufferooFactory.makeBufferooList(2))
         verify(mockBrowseBufferoosView).hideErrorState()
     }
 
     @Test
     fun retrieveBufferoosHidesEmptyState() {
-        stubGetBufferoos(Single.just(BufferooFactory.makeBufferooList(2)))
-
         browseBufferoosPresenter.retrieveBufferoos()
+
+        verify(mockGetBufferoos).execute(captor.capture(), eq(null))
+        captor.firstValue.onSuccess(BufferooFactory.makeBufferooList(2))
         verify(mockBrowseBufferoosView).hideEmptyState()
     }
 
     @Test
     fun retrieveBufferoosShowsBufferoos() {
         val bufferoos = BufferooFactory.makeBufferooList(2)
-        stubGetBufferoos(Single.just(bufferoos))
-
         browseBufferoosPresenter.retrieveBufferoos()
+
+        verify(mockGetBufferoos).execute(captor.capture(), eq(null))
+        captor.firstValue.onSuccess(bufferoos)
         verify(mockBrowseBufferoosView).showBufferoos(
                 bufferoos.map { mockBufferooMapper.mapToView(it) })
     }
 
     @Test
     fun retrieveBufferoosShowsEmptyState() {
-        stubGetBufferoos(Single.just(BufferooFactory.makeBufferooList(0)))
-
         browseBufferoosPresenter.retrieveBufferoos()
+
+        verify(mockGetBufferoos).execute(captor.capture(), eq(null))
+        captor.firstValue.onSuccess(BufferooFactory.makeBufferooList(0))
         verify(mockBrowseBufferoosView).showEmptyState()
     }
 
     @Test
     fun retrieveBufferoosHidesBufferoos() {
-        stubGetBufferoos(Single.just(BufferooFactory.makeBufferooList(0)))
-
         browseBufferoosPresenter.retrieveBufferoos()
+
+        verify(mockGetBufferoos).execute(captor.capture(), eq(null))
+        captor.firstValue.onSuccess(BufferooFactory.makeBufferooList(0))
         verify(mockBrowseBufferoosView).hideBufferoos()
     }
 
     @Test
     fun retrieveBufferoosShowsErrorState() {
-        stubGetBufferoos(Single.just(BufferooFactory.makeBufferooList(2)))
-
         browseBufferoosPresenter.retrieveBufferoos()
-        verify(mockBrowseBufferoosView).hideErrorState()
+
+        verify(mockGetBufferoos).execute(captor.capture(), eq(null))
+        captor.firstValue.onError(RuntimeException())
+        verify(mockBrowseBufferoosView).showErrorState()
     }
 
     @Test
     fun retrieveBufferoosHidesBufferoosWhenErrorThrown() {
-        stubGetBufferoos(Single.just(BufferooFactory.makeBufferooList(2)))
-
         browseBufferoosPresenter.retrieveBufferoos()
-        verify(mockBrowseBufferoosView).hideErrorState()
+
+        verify(mockGetBufferoos).execute(captor.capture(), eq(null))
+        captor.firstValue.onError(RuntimeException())
+        verify(mockBrowseBufferoosView).hideBufferoos()
     }
 
     @Test
     fun retrieveBufferoosHidesEmptyStateWhenErrorThrown() {
-        stubGetBufferoos(Single.just(BufferooFactory.makeBufferooList(2)))
-
         browseBufferoosPresenter.retrieveBufferoos()
-        verify(mockBrowseBufferoosView).hideErrorState()
+
+        verify(mockGetBufferoos).execute(captor.capture(), eq(null))
+        captor.firstValue.onError(RuntimeException())
+        verify(mockBrowseBufferoosView).hideEmptyState()
     }
     //</editor-fold>
-
-    private fun stubGetBufferoos(single: Single<List<Bufferoo>>) {
-        whenever(mockGetBufferoos.buildUseCaseObservable(null))
-                .thenReturn(single)
-    }
 
 }

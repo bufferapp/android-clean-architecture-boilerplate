@@ -2,12 +2,13 @@ package org.buffer.android.boilerplate.cache.mapper
 
 import org.buffer.android.boilerplate.cache.model.CachedBufferoo
 import org.buffer.android.boilerplate.data.model.BufferooEntity
+import javax.inject.Inject
 
 /**
  * Map a [CachedBufferoo] instance to and from a [BufferooEntity] instance when data is moving between
  * this later and the Data layer
  */
-class BufferooEntityMapper : EntityMapper<CachedBufferoo, BufferooEntity> {
+class BufferooEntityMapper @Inject constructor(): EntityMapper<CachedBufferoo, BufferooEntity> {
 
     /**
      * Map a [BufferooEntity] instance to a [CachedBufferoo] instance

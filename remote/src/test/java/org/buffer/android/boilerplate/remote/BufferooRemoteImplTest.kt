@@ -5,7 +5,7 @@ import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.remote.mapper.BufferooEntityMapper
-import org.buffer.android.boilerplate.domain.test.factory.BufferooFactory
+import org.buffer.android.boilerplate.remote.test.factory.BufferooFactory
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

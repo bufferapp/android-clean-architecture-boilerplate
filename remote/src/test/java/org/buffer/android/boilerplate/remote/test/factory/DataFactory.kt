@@ -1,4 +1,4 @@
-package org.buffer.android.boilerplate.data.test.factory
+package org.buffer.android.boilerplate.remote.test.factory
 
 import java.util.concurrent.ThreadLocalRandom
 
