@@ -11,7 +11,7 @@ import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
 import org.buffer.android.boilerplate.domain.model.Bufferoo
 import org.buffer.android.boilerplate.ui.R
-import org.buffer.android.boilerplate.ui.TestApplication
+import org.buffer.android.boilerplate.ui.test.TestApplication
 import org.buffer.android.boilerplate.ui.test.factory.ui.BufferooFactory
 import org.buffer.android.boilerplate.ui.test.util.RecyclerViewMatcher
 import org.junit.Rule

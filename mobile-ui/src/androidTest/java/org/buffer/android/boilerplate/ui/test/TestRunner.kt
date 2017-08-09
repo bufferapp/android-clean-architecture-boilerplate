@@ -1,4 +1,4 @@
-package org.buffer.android.boilerplate.ui
+package org.buffer.android.boilerplate.ui.test
 
 import android.app.Application
 import android.content.Context
