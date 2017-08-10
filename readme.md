@@ -2,6 +2,8 @@
 
 # Android Clean Architecture Boilerplate
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/278fa00f492d48a288ab64188d15fb61)](https://www.codacy.com/app/hitherejoe/android-clean-architecture-boilerplate?utm_source=github.com&utm_medium=referral&utm_content=bufferapp/android-clean-architecture-boilerplate&utm_campaign=badger)
+
 Welcome 👋 We hope this boilerplate is not only helpful to other developers, but also that it helps to enducate in the area of architecture.We created this boilerplate for a few reasons:
 
 1. To experiment with modularisation
