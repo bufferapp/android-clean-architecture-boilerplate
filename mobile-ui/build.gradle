@@ -16,6 +16,12 @@ android {
         testInstrumentationRunner "org.buffer.android.boilerplate.ui.test.TestRunner"
     }
 
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+    }
+
     dexOptions {
         preDexLibraries = false
         dexInProcess = false
@@ -55,10 +61,6 @@ configurations.all {
 }
 
 dependencies {
-
-    final ESPRESSO_VERSION = '2.2.2'
-    final RUNNER_VERSION = '0.5'
-
     def mobileUiDependencies = rootProject.ext.mobileUiDependencies
     def mobileUiTestDependencies = rootProject.ext.mobileUiTestDependencies
 
@@ -67,38 +69,46 @@ dependencies {
     compile project(':cache')
     compile project(':remote')
 
-    compile mobileUiDependencies.javaxAnnotation
+    implementation mobileUiDependencies.javaxAnnotation
 
-    compile mobileUiDependencies.kotlin
-    compile mobileUiDependencies.javaxInject
-    compile mobileUiDependencies.rxKotlin
-    compile mobileUiDependencies.androidAnnotations
-    compile mobileUiDependencies.androidSupportV4
-    compile mobileUiDependencies.androidSupportV13
-    compile mobileUiDependencies.appCompatV7
-    compile mobileUiDependencies.supportRecyclerView
-    compile mobileUiDependencies.supportDesign
-    compile mobileUiDependencies.timber
+    implementation mobileUiDependencies.kotlin
+    implementation mobileUiDependencies.javaxInject
+    implementation mobileUiDependencies.rxKotlin
+    implementation mobileUiDependencies.androidAnnotations
+    implementation mobileUiDependencies.androidSupportV4
+    implementation mobileUiDependencies.androidSupportV13
+    implementation mobileUiDependencies.appCompatV7
+    implementation mobileUiDependencies.supportRecyclerView
+    implementation mobileUiDependencies.supportDesign
+    implementation mobileUiDependencies.timber
+    implementation mobileUiDependencies.rxAndroid
+    implementation mobileUiDependencies.glide
+    implementation mobileUiDependencies.dagger
+    implementation mobileUiDependencies.daggerSupport
 
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'com.github.bumptech.glide:glide:4.0.0'
+    testImplementation mobileUiTestDependencies.kotlinJUnit
+
+    kapt mobileUiDependencies.daggerCompiler
+    kapt mobileUiDependencies.daggerProcessor
+    provided mobileUiDependencies.glassfishAnnotation
 
     // Instrumentation test dependencies
-    androidTestCompile mobileUiTestDependencies.junit
-    androidTestCompile mobileUiTestDependencies.mockito
-    androidTestCompile ("com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION") {
+    androidTestImplementation mobileUiTestDependencies.junit
+    androidTestImplementation mobileUiTestDependencies.mockito
+    androidTestImplementation mobileUiTestDependencies.dexmakerMockito
+    androidTestImplementation (mobileUiTestDependencies.espressoCore) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile ("com.android.support.test:runner:$RUNNER_VERSION") {
+    androidTestImplementation (mobileUiTestDependencies.androidRunner) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile ("com.android.support.test:rules:$RUNNER_VERSION") {
+    androidTestImplementation (mobileUiTestDependencies.androidRules) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile ("com.android.support.test.espresso:espresso-intents:$ESPRESSO_VERSION") {
+    androidTestImplementation (mobileUiTestDependencies.espressoIntents) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestCompile("com.android.support.test.espresso:espresso-contrib:$ESPRESSO_VERSION") {
+    androidTestImplementation(mobileUiTestDependencies.espressoContrib) {
         exclude module: 'appcompat'
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
@@ -107,18 +117,7 @@ dependencies {
         exclude module: 'recyclerview-v7'
         exclude module: 'design'
     }
-    androidTestCompile 'com.linkedin.dexmaker:dexmaker-mockito:2.2.0'
-    final DAGGER_VERSION = '2.11'
 
-    def daggerCompiler = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
-
-    compile  "com.google.dagger:dagger:$DAGGER_VERSION"
-    compile  "com.google.dagger:dagger-android-support:$DAGGER_VERSION"
-
-    kapt daggerCompiler
-    kapt  "com.google.dagger:dagger-android-processor:$DAGGER_VERSION"
-    provided 'org.glassfish:javax.annotation:10.0-b28'
-
-    kaptTest daggerCompiler
-    kaptAndroidTest daggerCompiler
+    kaptTest mobileUiDependencies.daggerCompiler
+    kaptAndroidTest mobileUiDependencies.daggerCompiler
 }

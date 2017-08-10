@@ -11,12 +11,12 @@ dependencies {
 
     compile dataDependencies.javaxAnnotation
 
-    compile dataDependencies.kotlin
-    compile dataDependencies.javaxInject
-    compile dataDependencies.rxKotlin
+    implementation dataDependencies.kotlin
+    implementation dataDependencies.javaxInject
+    implementation dataDependencies.rxKotlin
 
-    testCompile dataTestDependencies.junit
-    testCompile dataTestDependencies.kotlinJUnit
-    testCompile dataTestDependencies.mockito
-    testCompile dataTestDependencies.assertj
+    testImplementation dataTestDependencies.junit
+    testImplementation dataTestDependencies.kotlinJUnit
+    testImplementation dataTestDependencies.mockito
+    testImplementation dataTestDependencies.assertj
 }

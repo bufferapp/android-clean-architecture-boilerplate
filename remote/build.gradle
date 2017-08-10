@@ -7,22 +7,22 @@ dependencies {
     def remoteDependencies = rootProject.ext.remoteDependencies
     def remoteTestDependencies = rootProject.ext.remoteTestDependencies
 
-    compile remoteDependencies.javaxAnnotation
+    implementation remoteDependencies.javaxAnnotation
 
-    compile remoteDependencies.kotlin
-    compile remoteDependencies.javaxInject
-    compile remoteDependencies.rxKotlin
-    compile remoteDependencies.gson
-    compile remoteDependencies.okHttp
-    compile remoteDependencies.okHttpLogger
-    compile remoteDependencies.retrofit
-    compile remoteDependencies.retrofitConverter
-    compile remoteDependencies.retrofitAdapter
+    implementation remoteDependencies.kotlin
+    implementation remoteDependencies.javaxInject
+    implementation remoteDependencies.rxKotlin
+    implementation remoteDependencies.gson
+    implementation remoteDependencies.okHttp
+    implementation remoteDependencies.okHttpLogger
+    implementation remoteDependencies.retrofit
+    implementation remoteDependencies.retrofitConverter
+    implementation remoteDependencies.retrofitAdapter
 
-    testCompile remoteTestDependencies.junit
-    testCompile remoteTestDependencies.kotlinJUnit
-    testCompile remoteTestDependencies.mockito
-    testCompile remoteTestDependencies.assertj
+    testImplementation remoteTestDependencies.junit
+    testImplementation remoteTestDependencies.kotlinJUnit
+    testImplementation remoteTestDependencies.mockito
+    testImplementation remoteTestDependencies.assertj
 
     compile project(':data')
 }

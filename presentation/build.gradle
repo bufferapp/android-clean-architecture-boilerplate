@@ -15,13 +15,14 @@ dependencies {
 
     compile presentationDependencies.javaxAnnotation
 
-    compile presentationDependencies.kotlin
-    compile presentationDependencies.javaxInject
-    compile presentationDependencies.rxKotlin
-    testCompile presentationTestDependencies.junit
-    testCompile presentationTestDependencies.mockito
-    testCompile presentationTestDependencies.assertj
-    testCompile presentationTestDependencies.robolectric
+    implementation presentationDependencies.kotlin
+    implementation presentationDependencies.javaxInject
+    implementation presentationDependencies.rxKotlin
+
+    testImplementation presentationTestDependencies.junit
+    testImplementation presentationTestDependencies.mockito
+    testImplementation presentationTestDependencies.assertj
+    testImplementation presentationTestDependencies.robolectric
 
     compile project(':domain')
 }

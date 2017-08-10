@@ -29,6 +29,10 @@ ext {
     roomVersion = '1.0.0-alpha6'
     supportLibraryVersion = '25.4.0'
     timberVersion = '4.5.1'
+    rxAndroidVersion = '2.0.1'
+    glideVersion = '4.0.0'
+    daggerVersion = '2.11'
+    glassfishAnnotationVersion = '10.0-b28'
 
     //Testing
     robolectricVersion = '3.4'
@@ -36,11 +40,13 @@ ext {
     assertJVersion = '1.7.1'
     mockitoVersion = '1.9.5'
     dexmakerVersion = '1.0'
-    espressoVersion = '2.0'
+    espressoVersion = '2.2.2'
     testingSupportLibVersion = '0.1'
     mockitoKotlinVersion = '1.5.0'
     androidSupportRunnerVersion = '0.5'
     androidSupportRulesVersion = '0.5'
+    dexmakerMockitoversion = '2.2.0'
+    runnerVersion = '0.5'
 
     domainDependencies = [
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
@@ -160,6 +166,8 @@ ext {
             daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
             dagger:             "com.google.dagger:dagger:${daggerVersion}",
             rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+            rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            glide:              "com.github.bumptech.glide:glide:${glideVersion}",
             kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}",
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
@@ -169,7 +177,10 @@ ext {
             appCompatV7:        "com.android.support:appcompat-v7:${supportLibraryVersion}",
             supportRecyclerView:"com.android.support:recyclerview-v7:${supportLibraryVersion}",
             supportDesign:      "com.android.support:design:${supportLibraryVersion}",
-            timber:             "com.jakewharton.timber:timber:${timberVersion}"
+            timber:             "com.jakewharton.timber:timber:${timberVersion}",
+            daggerSupport:      "com.google.dagger:dagger-android-support:${daggerVersion}",
+            daggerProcessor:    "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            glassfishAnnotation: "org.glassfish:javax.annotation:${glassfishAnnotationVersion}"
     ]
 
     mobileUiTestDependencies = [
@@ -178,7 +189,13 @@ ext {
             assertj:            "org.assertj:assertj-core:${assertJVersion}",
             mockito:            "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
             supportRunner:      "com.android.support.test:runner:${androidSupportRunnerVersion}",
-            supportRules:       "com.android.support.test:rules:${androidSupportRulesVersion}"
+            supportRules:       "com.android.support.test:rules:${androidSupportRulesVersion}",
+            dexmakerMockito:    "com.linkedin.dexmaker:dexmaker-mockito:${dexmakerMockitoversion}",
+            espressoCore:       "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            espressoIntents:    "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
+            espressoContrib:    "com.android.support.test.espresso:espresso-contrib:${espressoVersion}",
+            androidRunner:      "com.android.support.test:runner:${runnerVersion}",
+            androidRules:       "com.android.support.test:rules:${runnerVersion}"
     ]
 
 }
