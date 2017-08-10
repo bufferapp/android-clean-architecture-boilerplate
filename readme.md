@@ -100,3 +100,11 @@ The data model for this layer is the [CachedBufferoo](https://github.com/buffera
 We will be happy to answer any questions that you may have on this approach, and if you want to lend a hand with the boilerplate then please feel free to submit an issue and/or pull request 🙂
 
 Again to note, use Clean Architecture where appropriate. This is example can aoppear as over-architectured for what it is - but it is an example only. The same can be said for individual models for each layer, this decision is down to you. In this example the data used for ever model is exactly the same, so some may argue that hey, maybe we don't need to map between the presentation and user-interface layer. Or maybe you don't want to modularise your data layer into data/remote/cache and want to just have it in a single 'data' module, that decision is down to you and the the project that you are working on 🙌🏻
+
+## Thanks
+
+A special thanks to the authors involved with these two repositories, they were a great resource during our learning!
+
+- https://github.com/android10/Android-CleanArchitecture
+
+- https://github.com/googlesamples/android-architecture
