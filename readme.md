@@ -2,13 +2,13 @@
 
 # Android Clean Architecture Boilerplate
 
-Welcome 👋 We hope this boilerplate is not only helpful to other developers, but also that it helps to enducate in the area of architecture.We created this boilerplate for a few reasons:
+Welcome 👋 We hope this boilerplate is not only helpful to other developers, but also that it helps to educate in the area of architecture. We created this boilerplate for a few reasons:
 
 1. To experiment with modularisation
 2. To share some approaches to clean architecture, especially as we've been [talking a lot about it](https://academy.realm.io/posts/converting-an-app-to-use-clean-architecture/)
 3. To use as a starting point in future projects where clean architecture feels appropriate
 
-It is written in 100% kotlin with both UI and Unit tests - we will also be keeping this up-to-date as libraries change!
+It is written 100% in Kotlin with both UI and Unit tests - we will also be keeping this up-to-date as libraries change!
 
 ### Disclaimer
 
@@ -44,26 +44,26 @@ The architecture of the project follows the principles of Clean Archicture. Here
 
 ![architecture](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/architecture.png?raw=true)
 
-The sample app when runs will show you a simple list of all the Bufferoos (Buffer team members!).
+The sample app when run will show you a simple list of all the Bufferoos (Buffer team members!).
 <p align="center">
 <img src="https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/device_screenshot.png" alt="Drawing" style="width: 10px;"/>
 </p>
 
-Let's look at each of teh architecture layers and the role each one plays :)
+Let's look at each of the architecture layers and the role each one plays :)
 
 ![architecture](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/ui.png?raw=true)
 
 ### User Interface
 
-This layer makes use of the Android Framework and is used to create all of our UI components to display inside of the [Browse Activity](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/9a1308c42c0c882fc724a0e579ee1ce4d454f961/mobile-ui/src/main/java/org/buffer/android/boilerplate/ui/browse/BrowseActivity.kt). The layer receives its data from the Presentation layer and when retrieved, the received models are mapped using the [Bufferoo Mapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/9a1308c42c0c882fc724a0e579ee1ce4d454f961/mobile-ui/src/main/java/org/buffer/android/boilerplate/ui/mapper/BufferooMapper.kt) so that the model can be mapped to this layers interpretation of the Bufferoo instance, which is the [BufferooViewModel](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/9a1308c42c0c882fc724a0e579ee1ce4d454f961/mobile-ui/src/main/java/org/buffer/android/boilerplate/ui/model/BufferooViewModel.kt). The Activity makes use of the [BrowseContract](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/browse/BrowseBufferoosContract.kt) to enable communication to and from the presenter
+This layer makes use of the Android Framework and is used to create all of our UI components to display inside of the [Browse Activity](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/9a1308c42c0c882fc724a0e579ee1ce4d454f961/mobile-ui/src/main/java/org/buffer/android/boilerplate/ui/browse/BrowseActivity.kt). The layer receives its data from the Presentation layer and when retrieved, the received models are mapped using the [Bufferoo Mapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/9a1308c42c0c882fc724a0e579ee1ce4d454f961/mobile-ui/src/main/java/org/buffer/android/boilerplate/ui/mapper/BufferooMapper.kt) so that the model can be mapped to this layer's interpretation of the Bufferoo instance, which is the [BufferooViewModel](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/9a1308c42c0c882fc724a0e579ee1ce4d454f961/mobile-ui/src/main/java/org/buffer/android/boilerplate/ui/model/BufferooViewModel.kt). The Activity makes use of the [BrowseContract](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/browse/BrowseBufferoosContract.kt) to enable communication to and from the presenter
 
 ### Presentation
 
-This layers responsibilty is to handle the presentation of the User Interface, but at the same time knowing nothing about the user interface itself. This layer has no dependance on the Android Framework, it is a pure Kotlin module. Each Presenter class that is created implements the [Presenter](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/BasePresenter.kt) interface defined within an instance of a contract - in this case the [BrowseContract](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/browse/BrowseBufferoosContract.kt), which also contains an interface for the [View](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/BaseView.kt) interface.
+This layer's responsibilty is to handle the presentation of the User Interface, but at the same time knows nothing about the user interface itself. This layer has no dependance on the Android Framework, it is a pure Kotlin module. Each Presenter class that is created implements the [Presenter](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/BasePresenter.kt) interface defined within an instance of a contract - in this case the [BrowseContract](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/browse/BrowseBufferoosContract.kt), which also contains an interface for the [View](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/BaseView.kt) interface.
 
-When a Presenter is constructed an instance of this View is passed in, this view is then used and the presenter is set for it using the implemented [setPresenter()](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/browse/BrowseBufferoosPresenter.kt#L15) call.
+When a Presenter is constructed, an instance of this View is passed in. This view is then used and the presenter is set for it using the implemented [setPresenter()](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/browse/BrowseBufferoosPresenter.kt#L15) call.
 
-The presenters use an instance of a [SingleUseCase](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/SingleUseCase.kt) from the Domain layer to retrieve data, note here that there is no direct name reference to the UseCase that we are using - we do inject an instance of the [GetBufferoos](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/browse/GetBufferoos.kt) UseCase however.
+The presenters use an instance of a [SingleUseCase](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/SingleUseCase.kt) from the Domain layer to retrieve data. Note here that there is no direct name reference to the UseCase that we are using - we do inject an instance of the [GetBufferoos](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/browse/GetBufferoos.kt) UseCase, however.
 
 The presenter receives data from the Domain layer in the form of a [Bufferoo](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/model/BufferooView.kt). These instances are mapped to instance of this layers model, which is a BufferooView using the [BufferooMapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/mapper/BufferooMapper.kt).
 
@@ -101,7 +101,7 @@ The data model for this layer is the [CachedBufferoo](https://github.com/buffera
 
 We will be happy to answer any questions that you may have on this approach, and if you want to lend a hand with the boilerplate then please feel free to submit an issue and/or pull request 🙂
 
-Again to note, use Clean Architecture where appropriate. This is example can aoppear as over-architectured for what it is - but it is an example only. The same can be said for individual models for each layer, this decision is down to you. In this example the data used for ever model is exactly the same, so some may argue that hey, maybe we don't need to map between the presentation and user-interface layer. Or maybe you don't want to modularise your data layer into data/remote/cache and want to just have it in a single 'data' module, that decision is down to you and the the project that you are working on 🙌🏻
+Again to note, use Clean Architecture where appropriate. This is example can appear as over-architectured for what it is - but it is an example only. The same can be said for individual models for each layer, this decision is down to you. In this example, the data used for ever model is exactly the same, so some may argue that "hey, maybe we don't need to map between the presentation and user-interface layer". Or maybe you don't want to modularise your data layer into data/remote/cache and want to just have it in a single 'data' module. That decision is down to you and the the project that you are working on 🙌🏻
 
 ## Thanks
 
