@@ -95,7 +95,7 @@ The API returns us instances of a [BufferooModel](https://github.com/bufferapp/a
 
 The Cache layer handles all communication with the local database which is used to cache data. 
 
-The data model for this layer is the [CachedBufferoo](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/cache/src/main/java/org/buffer/android/boilerplate/cache/model/CachedBufferoo.kt) and this is mapped  to and from a BufferooEntity instance from the Data layer using the [BufferooEntityMapper(https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/cache/src/main/java/org/buffer/android/boilerplate/cache/mapper/BufferooEntityMapper.kt) class.
+The data model for this layer is the [CachedBufferoo](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/cache/src/main/java/org/buffer/android/boilerplate/cache/model/CachedBufferoo.kt) and this is mapped  to and from a BufferooEntity instance from the Data layer using the [BufferooEntityMapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/cache/src/main/java/org/buffer/android/boilerplate/cache/mapper/BufferooEntityMapper.kt) class.
 
 ## Conclusion
 
