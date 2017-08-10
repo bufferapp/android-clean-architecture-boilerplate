@@ -1,8 +1,4 @@
 language: android
-env:
-  global:
-    - ANDROID_TARGET=android-26
-    - ANDROID_ABI=armeabi-v7a
 android:
   components:
   - tools
@@ -13,10 +9,10 @@ android:
   - sys-img-${ANDROID_ABI}-${ANDROID_TARGET}
 script:
   - ./gradlew build jacocoTestReport assembleAndroidTest
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
+  - echo no | android create avd --force -n test -t android-26 --abi armeabi-v7a
+  - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
-  - adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
+  - adb shell input keyevent 82 &
   - ./gradlew connectedCheck
 after_success:
   - bash <(curl -s https://codecov.io/bash)
