@@ -2,7 +2,7 @@ package org.buffer.android.boilerplate.ui.injection.module
 
 import dagger.Module
 import dagger.Provides
-import org.buffer.android.boilerplate.domain.interactor.bufferoo.GetBufferoos
+import org.buffer.android.boilerplate.domain.interactor.browse.GetBufferoos
 import org.buffer.android.boilerplate.presentation.browse.BrowseBufferoosContract
 import org.buffer.android.boilerplate.presentation.browse.BrowseBufferoosPresenter
 import org.buffer.android.boilerplate.presentation.mapper.BufferooMapper

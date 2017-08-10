@@ -1,16 +1,15 @@
 package org.buffer.android.boilerplate.presentation.browse
 
 import io.reactivex.observers.DisposableSingleObserver
-import org.buffer.android.boilerplate.domain.interactor.bufferoo.GetBufferoos
+import org.buffer.android.boilerplate.domain.interactor.SingleUseCase
 import org.buffer.android.boilerplate.domain.model.Bufferoo
 import org.buffer.android.boilerplate.presentation.mapper.BufferooMapper
 import javax.inject.Inject
 
 class BrowseBufferoosPresenter @Inject constructor(val browseView: BrowseBufferoosContract.View,
-                                                   val getBufferoosUseCase: GetBufferoos,
+                                                   val getBufferoosUseCase: SingleUseCase<List<Bufferoo>, Void>,
                                                    val bufferooMapper: BufferooMapper):
         BrowseBufferoosContract.Presenter {
-
 
     init {
         browseView.setPresenter(this)
@@ -21,7 +20,7 @@ class BrowseBufferoosPresenter @Inject constructor(val browseView: BrowseBuffero
     }
 
     override fun stop() {
-        //getBufferoosUseCase.dispose()
+        getBufferoosUseCase.dispose()
     }
 
     override fun retrieveBufferoos() {

@@ -1,4 +1,4 @@
-package org.buffer.android.boilerplate.domain.interactor.bufferoo
+package org.buffer.android.boilerplate.domain.interactor.browse
 
 import io.reactivex.Single
 import org.buffer.android.boilerplate.domain.executor.PostExecutionThread

@@ -6,7 +6,7 @@ import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Single
 import org.buffer.android.boilerplate.domain.executor.PostExecutionThread
 import org.buffer.android.boilerplate.domain.executor.ThreadExecutor
-import org.buffer.android.boilerplate.domain.interactor.bufferoo.GetBufferoos
+import org.buffer.android.boilerplate.domain.interactor.browse.GetBufferoos
 import org.buffer.android.boilerplate.domain.model.Bufferoo
 import org.buffer.android.boilerplate.domain.repository.BufferooRepository
 import org.buffer.android.boilerplate.domain.test.factory.BufferooFactory

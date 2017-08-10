@@ -2,7 +2,7 @@ package org.buffer.android.boilerplate.presentation.browse
 
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.observers.DisposableSingleObserver
-import org.buffer.android.boilerplate.domain.interactor.bufferoo.GetBufferoos
+import org.buffer.android.boilerplate.domain.interactor.browse.GetBufferoos
 import org.buffer.android.boilerplate.domain.model.Bufferoo
 import org.buffer.android.boilerplate.presentation.mapper.BufferooMapper
 import org.buffer.android.boilerplate.presentation.test.factory.BufferooFactory
