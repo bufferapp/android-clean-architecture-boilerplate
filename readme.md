@@ -49,6 +49,8 @@ The sample app when runs will show you a simple list of all the Bufferoos (Buffe
 
 Let's look at each of teh architecture layers and the role each one plays :)
 
+![architecture](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/ui.png?raw=true)
+
 ### User Interface
 
 This layer makes use of the Android Framework and is used to create all of our UI components to display inside of the [Browse Activity](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/9a1308c42c0c882fc724a0e579ee1ce4d454f961/mobile-ui/src/main/java/org/buffer/android/boilerplate/ui/browse/BrowseActivity.kt). The layer receives its data from the Presentation layer and when retrieved, the received models are mapped using the [Bufferoo Mapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/9a1308c42c0c882fc724a0e579ee1ce4d454f961/mobile-ui/src/main/java/org/buffer/android/boilerplate/ui/mapper/BufferooMapper.kt) so that the model can be mapped to this layers interpretation of the Bufferoo instance, which is the [BufferooViewModel](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/9a1308c42c0c882fc724a0e579ee1ce4d454f961/mobile-ui/src/main/java/org/buffer/android/boilerplate/ui/model/BufferooViewModel.kt). The Activity makes use of the [BrowseContract](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/browse/BrowseBufferoosContract.kt) to enable communication to and from the presenter
@@ -70,6 +72,8 @@ The domain layer responsibility is to simply contain the UseCase instance used t
 The layer defines the [Bufferoo](https://github.com/bufferapp/android-clean-architecture-boilerplate/tree/master/domain/src/main/java/org/buffer/android/boilerplate/domain/model) class but no mapper. This is because the Domain layer is our central layer, it knows nothing of the layers outside of it so has no need to map data to any other type of model.
 
 The Domain layer defines the [BufferooRepository](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/repository/BufferooRepository.kt) interface which provides a set of methods for an external layer to implement as the UseCase classes use the interface when requesting data.
+
+![architecture](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/data.png?raw=true)
 
 ### Data
 
