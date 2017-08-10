@@ -38,6 +38,19 @@ Clean Architecture will not be appropriate for every project, so it is down to y
 
 ## Architecture
 
-The architecture of the project follows the principles of Clean Archicture.
+The architecture of the project follows the principles of Clean Archicture. Here's how the sample project implements it:
 
 ![architecture](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/architecture.png?raw=true)
+
+The sample app when runs will show you a simple list of all the Bufferoos (Buffer team members!).
+
+<img src="https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/device_screenshot.png" alt="Drawing" style="width: 10px;"/>
+
+Let's look at each of teh architecture layers and the role each one plays :)
+
+#### User Interface
+
+This layer makes use of the Android Framework and is used to create all of our UI components to display inside of the [Browse Activity](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/9a1308c42c0c882fc724a0e579ee1ce4d454f961/mobile-ui/src/main/java/org/buffer/android/boilerplate/ui/browse/BrowseActivity.kt). The layer receives its data from the Presentation layer and when retrieved, the received models are mapped using the [Bufferoo Mapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/9a1308c42c0c882fc724a0e579ee1ce4d454f961/mobile-ui/src/main/java/org/buffer/android/boilerplate/ui/mapper/BufferooMapper.kt) so that the model can be mapped to this layers interpretation of the Bufferoo instance, which is the [BufferooViewModel](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/9a1308c42c0c882fc724a0e579ee1ce4d454f961/mobile-ui/src/main/java/org/buffer/android/boilerplate/ui/model/BufferooViewModel.kt).
+
+
+
