@@ -83,7 +83,7 @@ The Data layer is our access point to external data layers and is used to fetch 
 
 Each of these DataStore classes also references a corresponding [BufferooCache](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/data/src/main/java/org/buffer/android/boilerplate/data/repository/BufferooCache.kt) and [BufferooRemote](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/data/src/main/java/org/buffer/android/boilerplate/data/repository/BufferooRemote.kt) interface, which is used when requesting data from an external data source module.
 
-This layers data model is teh [BufferooEntity](https://github.com/bufferapp/android-clean-architecture-boilerplate/tree/master/data/src/main/java/org/buffer/android/boilerplate/data/model). Here the [BufferooMapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/data/src/main/java/org/buffer/android/boilerplate/data/mapper/BufferooMapper.kt) is used to map data to and from a Bufferoo instance from the domain layer and BufferooEntity instance from this layer as required.
+This layers data model is the [BufferooEntity](https://github.com/bufferapp/android-clean-architecture-boilerplate/tree/master/data/src/main/java/org/buffer/android/boilerplate/data/model). Here the [BufferooMapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/data/src/main/java/org/buffer/android/boilerplate/data/mapper/BufferooMapper.kt) is used to map data to and from a Bufferoo instance from the domain layer and BufferooEntity instance from this layer as required.
 
 ### Remote
 
