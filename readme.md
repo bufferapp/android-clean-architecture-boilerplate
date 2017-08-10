@@ -39,3 +39,5 @@ Clean Architecture will not be appropriate for every project, so it is down to y
 ## Architecture
 
 The architecture of the project follows the principles of Clean Archicture.
+
+![architecture](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/architecture.png?raw=true)
