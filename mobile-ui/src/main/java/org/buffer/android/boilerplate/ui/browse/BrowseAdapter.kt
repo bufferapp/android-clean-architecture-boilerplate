@@ -12,9 +12,6 @@ import org.buffer.android.boilerplate.ui.R
 import org.buffer.android.boilerplate.ui.model.BufferooViewModel
 import javax.inject.Inject
 
-/**
- * Created by joebirch on 07/08/2017.
- */
 class BrowseAdapter @Inject constructor(): RecyclerView.Adapter<BrowseAdapter.ViewHolder>() {
 
     var bufferoos: List<BufferooViewModel> = arrayListOf()

@@ -8,7 +8,8 @@ import org.buffer.android.boilerplate.data.repository.BufferooRemote
 import javax.inject.Inject
 
 /**
- * Created by joebirch on 03/08/2017.
+ * Implementation of the [BufferooDataStore] interface to provide a means of communicating
+ * with the remote data source
  */
 open class BufferooRemoteDataStore @Inject constructor(private val bufferooRemote: BufferooRemote) :
         BufferooDataStore {
@@ -21,6 +22,9 @@ open class BufferooRemoteDataStore @Inject constructor(private val bufferooRemot
         throw UnsupportedOperationException()
     }
 
+    /**
+     * Retrieve a list of [BufferooEntity] instances from the API
+     */
     override fun getBufferoos(): Single<List<BufferooEntity>> {
         return bufferooRemote.getBufferoos()
     }

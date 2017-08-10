@@ -10,7 +10,8 @@ import org.buffer.android.boilerplate.domain.repository.BufferooRepository
 import javax.inject.Inject
 
 /**
- * Created by joebirch on 03/08/2017.
+ * Provides an implementation of the [BufferooRepository] interface for communicating to and from
+ * data sources
  */
 class BufferooDataRepository @Inject constructor(private val factory: BufferooDataStoreFactory,
                                                  private val bufferooMapper: BufferooMapper):
@@ -28,11 +29,13 @@ class BufferooDataRepository @Inject constructor(private val factory: BufferooDa
 
     override fun getBufferoos(): Single<List<Bufferoo>> {
         return factory.retrieveDataStore().getBufferoos()
-                .map {
+                .flatMap {
                     val bufferoos = mutableListOf<Bufferoo>()
                     it.map { bufferoos.add(bufferooMapper.mapFromEntity(it)) }
-                    bufferoos
+                    saveBufferoos(bufferoos)
+                            .andThen(Single.just(bufferoos))
                 }
+
     }
 
 }
