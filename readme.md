@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/bufferapp/android-clean-architecture-boilerplate.svg?branch=master)](https://travis-ci.org/bufferapp/android-clean-architecture-boilerplate) [![codecov](https://codecov.io/gh/bufferapp/android-clean-architecture-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/bufferapp/android-clean-architecture-boilerplate) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/278fa00f492d48a288ab64188d15fb61)](https://www.codacy.com/app/hitherejoe/android-clean-architecture-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bufferapp/android-clean-architecture-boilerplate&amp;utm_campaign=Badge_Grade) 
+
 # Android Clean Architecture Boilerplate
 
 Welcome 👋 We hope this boilerplate is not only helpful to other developers, but also that it helps to enducate in the area of architecture.We created this boilerplate for a few reasons:
