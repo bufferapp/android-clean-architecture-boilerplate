@@ -51,7 +51,6 @@ android {
 }
 
 kapt {
-    generateStubs = true
     correctErrorTypes = true
 }
 
@@ -65,10 +64,10 @@ dependencies {
     def mobileUiDependencies = rootProject.ext.mobileUiDependencies
     def mobileUiTestDependencies = rootProject.ext.mobileUiTestDependencies
 
-    compile project(':presentation')
-    compile project(':data')
-    compile project(':cache')
-    compile project(':remote')
+    implementation project(':presentation')
+    implementation project(':data')
+    implementation project(':cache')
+    implementation project(':remote')
 
     implementation mobileUiDependencies.javaxAnnotation
 
@@ -91,12 +90,12 @@ dependencies {
 
     kapt mobileUiDependencies.daggerCompiler
     kapt mobileUiDependencies.daggerProcessor
-    provided mobileUiDependencies.glassfishAnnotation
+    compileOnly mobileUiDependencies.glassfishAnnotation
 
     // Instrumentation test dependencies
     androidTestImplementation mobileUiTestDependencies.junit
     androidTestImplementation mobileUiTestDependencies.mockito
-    androidTestImplementation mobileUiTestDependencies.dexmakerMockito
+    androidTestImplementation mobileUiTestDependencies.mockitoAndroid
     androidTestImplementation (mobileUiTestDependencies.espressoCore) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }

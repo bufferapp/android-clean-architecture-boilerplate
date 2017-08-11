@@ -18,16 +18,16 @@ ext {
     butterKnifeVersion = '7.0.1'
     recyclerViewVersion = '21.0.3'
     rxJavaVersion = '2.0.2'
-    rxKotlinVersion = '2.0.3'
+    rxKotlinVersion = '2.1.0'
     rxAndroidVersion = '2.0.1'
     javaxAnnotationVersion = '1.0'
     javaxInjectVersion = '1'
-    gsonVersion = '2.3'
-    okHttpVersion = '3.7.0'
+    gsonVersion = '2.8.1'
+    okHttpVersion = '3.8.1'
     androidAnnotationsVersion = '21.0.3'
-    retrofitVersion = '2.2.0'
+    retrofitVersion = '2.3.0'
     roomVersion = '1.0.0-alpha6'
-    supportLibraryVersion = '25.4.0'
+    supportLibraryVersion = '26.0.1'
     timberVersion = '4.5.1'
     rxAndroidVersion = '2.0.1'
     glideVersion = '4.0.0'
@@ -35,16 +35,17 @@ ext {
     glassfishAnnotationVersion = '10.0-b28'
 
     //Testing
-    robolectricVersion = '3.4'
+    robolectricVersion = '3.4.2'
     jUnitVersion = '4.12'
-    assertJVersion = '1.7.1'
+    assertJVersion = '3.8.0'
     mockitoVersion = '1.9.5'
     dexmakerVersion = '1.0'
-    espressoVersion = '2.2.2'
+    espressoVersion = '3.0.0'
     testingSupportLibVersion = '0.1'
     mockitoKotlinVersion = '1.5.0'
-    androidSupportRunnerVersion = '0.5'
-    androidSupportRulesVersion = '0.5'
+    mockitoAndroidVersion = '2.8.47'
+    androidSupportRunnerVersion = '1.0.0'
+    androidSupportRulesVersion = '1.0.0'
     dexmakerMockitoversion = '2.2.0'
     runnerVersion = '0.5'
 
@@ -190,7 +191,7 @@ ext {
             mockito:            "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
             supportRunner:      "com.android.support.test:runner:${androidSupportRunnerVersion}",
             supportRules:       "com.android.support.test:rules:${androidSupportRulesVersion}",
-            dexmakerMockito:    "com.linkedin.dexmaker:dexmaker-mockito:${dexmakerMockitoversion}",
+            mockitoAndroid:     "org.mockito:mockito-android:${mockitoAndroidVersion}",
             espressoCore:       "com.android.support.test.espresso:espresso-core:${espressoVersion}",
             espressoIntents:    "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
             espressoContrib:    "com.android.support.test.espresso:espresso-contrib:${espressoVersion}",
