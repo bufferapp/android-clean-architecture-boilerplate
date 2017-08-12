@@ -19,7 +19,7 @@ import javax.inject.Inject
  * operations in which data store implementation layers can carry out.
  */
 class BufferooCacheImpl @Inject constructor(dbOpenHelper: DbOpenHelper,
-                                            private val entityapper: BufferooEntityMapper,
+                                            private val entityMapper: BufferooEntityMapper,
                                             private val mapper: BufferooMapper,
                                             private val preferencesHelper: PreferencesHelper):
         BufferooCache {
@@ -59,7 +59,7 @@ class BufferooCacheImpl @Inject constructor(dbOpenHelper: DbOpenHelper,
             database.beginTransaction()
             try {
                 bufferoos.forEach {
-                    saveBufferoo(entityapper.mapToCached(it))
+                    saveBufferoo(entityMapper.mapToCached(it))
                 }
                 database.setTransactionSuccessful()
             } finally {
@@ -79,7 +79,7 @@ class BufferooCacheImpl @Inject constructor(dbOpenHelper: DbOpenHelper,
 
             while (updatesCursor.moveToNext()) {
                 val cachedBufferoo = mapper.parseCursor(updatesCursor)
-                bufferoos.add(entityapper.mapFromCached(cachedBufferoo))
+                bufferoos.add(entityMapper.mapFromCached(cachedBufferoo))
             }
 
             updatesCursor.close()

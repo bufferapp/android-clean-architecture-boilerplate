@@ -7,7 +7,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * General Preferences Helper class, used for storing prefence values using the Preference API
+ * General Preferences Helper class, used for storing preference values using the Preference API
  */
 @Singleton
 class PreferencesHelper @Inject constructor(context: Context) {
