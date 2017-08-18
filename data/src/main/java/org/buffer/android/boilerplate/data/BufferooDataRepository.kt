@@ -15,7 +15,7 @@ import javax.inject.Inject
  * data sources
  */
 class BufferooDataRepository @Inject constructor(private val factory: BufferooDataStoreFactory,
-                                                 private val bufferooMapper: BufferooMapper):
+                                                 private val bufferooMapper: BufferooMapper) :
         BufferooRepository {
 
     override fun clearBufferoos(): Completable {
@@ -23,26 +23,28 @@ class BufferooDataRepository @Inject constructor(private val factory: BufferooDa
     }
 
     override fun saveBufferoos(bufferoos: List<Bufferoo>): Completable {
-        val bufferooEntities = mutableListOf<BufferooEntity>()
-        bufferoos.map { bufferooEntities.add(bufferooMapper.mapToEntity(it)) }
-        return factory.retrieveCacheDataStore().saveBufferoos(bufferooEntities)
+        val bufferooEntities = bufferoos.map { bufferooMapper.mapToEntity(it) }
+        return saveBufferooEntities(bufferooEntities)
+    }
+
+    private fun saveBufferooEntities(bufferoos: List<BufferooEntity>): Completable {
+        return factory.retrieveCacheDataStore().saveBufferoos(bufferoos)
     }
 
     override fun getBufferoos(): Single<List<Bufferoo>> {
         val dataStore = factory.retrieveDataStore()
         return dataStore.getBufferoos()
                 .flatMap {
-                    val bufferoos = mutableListOf<Bufferoo>()
-                    it.map { bufferoos.add(bufferooMapper.mapFromEntity(it)) }
-                    Single.just(bufferoos)
-                }
-                .flatMap {
                     if (dataStore is BufferooRemoteDataStore) {
-                        saveBufferoos(it).toSingle { it }
+                        saveBufferooEntities(it).toSingle { it }
                     } else {
                         Single.just(it)
                     }
                 }
+                .map { list ->
+                    list.map { listItem ->
+                        bufferooMapper.mapFromEntity(listItem)
+                    }
+                }
     }
-
 }
