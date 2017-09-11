@@ -11,6 +11,7 @@ import org.buffer.android.boilerplate.cache.mapper.BufferooEntityMapper
 import org.buffer.android.boilerplate.cache.model.CachedBufferoo
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.data.repository.BufferooCache
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
@@ -21,32 +22,19 @@ import javax.inject.Inject
 class BufferooCacheImpl @Inject constructor(dbOpenHelper: DbOpenHelper,
                                             private val entityMapper: BufferooEntityMapper,
                                             private val mapper: BufferooMapper,
-                                            private val preferencesHelper: PreferencesHelper):
+                                            private val preferencesHelper: PreferencesHelper) :
         BufferooCache {
 
-    private val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
+    private val EXPIRATION_TIME = (TimeUnit.MINUTES.toMillis(10))
 
-    private var database: SQLiteDatabase = dbOpenHelper.writableDatabase
-
-    /**
-     * Retrieve an instance from the database, used for tests
-     */
-    internal fun getDatabase(): SQLiteDatabase {
-        return database
-    }
+    internal val database: SQLiteDatabase = dbOpenHelper.writableDatabase
 
     /**
      * Remove all the data from all the tables in the database.
      */
     override fun clearBufferoos(): Completable {
         return Completable.defer {
-            database.beginTransaction()
-            try {
-                database.delete(Db.BufferooTable.TABLE_NAME, null, null)
-                database.setTransactionSuccessful()
-            } finally {
-                database.endTransaction()
-            }
+            database.inTransaction { delete(Db.BufferooTable.TABLE_NAME, null, null) }
             Completable.complete()
         }
     }
@@ -56,15 +44,7 @@ class BufferooCacheImpl @Inject constructor(dbOpenHelper: DbOpenHelper,
      */
     override fun saveBufferoos(bufferoos: List<BufferooEntity>): Completable {
         return Completable.defer {
-            database.beginTransaction()
-            try {
-                bufferoos.forEach {
-                    saveBufferoo(entityMapper.mapToCached(it))
-                }
-                database.setTransactionSuccessful()
-            } finally {
-                database.endTransaction()
-            }
+            database.inTransaction { bufferoos.forEach { saveBufferoo(entityMapper.mapToCached(it)) } }
             Completable.complete()
         }
     }

@@ -17,5 +17,4 @@ open class BufferooMapper @Inject constructor(): Mapper<BufferooView, Bufferoo> 
         return BufferooView(type.name, type.title, type.avatar)
     }
 
-
 }

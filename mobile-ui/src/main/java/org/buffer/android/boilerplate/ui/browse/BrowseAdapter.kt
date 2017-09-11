@@ -12,9 +12,9 @@ import org.buffer.android.boilerplate.ui.R
 import org.buffer.android.boilerplate.ui.model.BufferooViewModel
 import javax.inject.Inject
 
-class BrowseAdapter @Inject constructor(): RecyclerView.Adapter<BrowseAdapter.ViewHolder>() {
+class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.ViewHolder>() {
 
-    var bufferoos: List<BufferooViewModel> = arrayListOf()
+    var bufferoos: List<BufferooViewModel> = emptyList()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val bufferoo = bufferoos[position]
@@ -34,20 +34,13 @@ class BrowseAdapter @Inject constructor(): RecyclerView.Adapter<BrowseAdapter.Vi
         return ViewHolder(itemView)
     }
 
-    override fun getItemCount(): Int {
-        return bufferoos.size
-    }
+    override fun getItemCount() = bufferoos.size
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var avatarImage: ImageView
-        var nameText: TextView
-        var titleText: TextView
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val avatarImage: ImageView = view.findViewById(R.id.image_avatar)
+        val nameText: TextView = view.findViewById(R.id.text_name)
+        val titleText: TextView = view.findViewById(R.id.text_title)
 
-        init {
-            avatarImage = view.findViewById(R.id.image_avatar)
-            nameText = view.findViewById(R.id.text_name)
-            titleText = view.findViewById(R.id.text_title)
-        }
     }
 
 }

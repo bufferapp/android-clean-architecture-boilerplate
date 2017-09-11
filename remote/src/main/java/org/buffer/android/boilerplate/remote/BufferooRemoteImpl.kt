@@ -3,7 +3,9 @@ package org.buffer.android.boilerplate.remote
 import io.reactivex.Single
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.data.repository.BufferooRemote
+import org.buffer.android.boilerplate.remote.BufferooService.*
 import org.buffer.android.boilerplate.remote.mapper.BufferooEntityMapper
+import org.buffer.android.boilerplate.remote.model.BufferooModel
 import javax.inject.Inject
 
 /**
@@ -12,7 +14,7 @@ import javax.inject.Inject
  * operations in which data store implementation layers can carry out.
  */
 class BufferooRemoteImpl @Inject constructor(private val bufferooService: BufferooService,
-                                             private val entityMapper: BufferooEntityMapper):
+                                             private val entityMapper: BufferooEntityMapper) :
         BufferooRemote {
 
     /**
@@ -20,12 +22,10 @@ class BufferooRemoteImpl @Inject constructor(private val bufferooService: Buffer
      */
     override fun getBufferoos(): Single<List<BufferooEntity>> {
         return bufferooService.getBufferoos()
-                .map { it.team }
-                .map {
-                    val entities = mutableListOf<BufferooEntity>()
-                    it.forEach { entities.add(entityMapper.mapFromRemote(it)) }
-                    entities
-                }
+                .map(BufferooResponse::team)
+                .map(this::mapToBufferoosEntities)
     }
 
+    private fun mapToBufferoosEntities(list: List<BufferooModel>) =
+            list.map { entityMapper.mapFromRemote(it) }
 }

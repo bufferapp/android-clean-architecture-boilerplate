@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.os.Build
+import org.buffer.android.boilerplate.cache.inTransaction
 import javax.inject.Inject
 
 /**
@@ -28,13 +29,7 @@ class DbOpenHelper @Inject constructor(context: Context) :
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.beginTransaction()
-        try {
-            db.execSQL(Db.BufferooTable.CREATE)
-            db.setTransactionSuccessful()
-        } finally {
-            db.endTransaction()
-        }
+        db.inTransaction { execSQL(Db.BufferooTable.CREATE) }
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {

@@ -9,8 +9,6 @@ import org.buffer.android.boilerplate.presentation.mapper.BufferooMapper
 import org.buffer.android.boilerplate.ui.browse.BrowseActivity
 import org.buffer.android.boilerplate.ui.injection.scopes.PerActivity
 
-
-
 /**
  * Module used to provide dependencies at an activity-level.
  */
