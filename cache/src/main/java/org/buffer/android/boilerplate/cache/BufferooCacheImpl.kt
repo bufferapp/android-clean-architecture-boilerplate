@@ -25,7 +25,7 @@ class BufferooCacheImpl @Inject constructor(dbOpenHelper: DbOpenHelper,
                                             private val preferencesHelper: PreferencesHelper) :
         BufferooCache {
 
-    private val EXPIRATION_TIME = (TimeUnit.MINUTES.toMillis(10))
+    private val EXPIRATION_TIME = TimeUnit.MINUTES.toMillis(10)
 
     internal val database: SQLiteDatabase = dbOpenHelper.writableDatabase
 

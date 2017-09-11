@@ -27,7 +27,7 @@ class BufferooCacheImplTest {
 
     @Before
     fun setup() {
-        databaseHelper.getDatabase().rawQuery("DELETE FROM " + Db.BufferooTable.TABLE_NAME, null)
+        databaseHelper.database.rawQuery("DELETE FROM " + Db.BufferooTable.TABLE_NAME, null)
     }
 
     @Test
@@ -77,7 +77,7 @@ class BufferooCacheImplTest {
     //</editor-fold>
 
     private fun insertBufferoos(cachedBufferoos: List<CachedBufferoo>) {
-        val database = databaseHelper.getDatabase()
+        val database = databaseHelper.database
         cachedBufferoos.forEach {
             database.insertOrThrow(Db.BufferooTable.TABLE_NAME, null,
                     mapper.toContentValues(it))
@@ -85,7 +85,7 @@ class BufferooCacheImplTest {
     }
 
     private fun checkNumRowsInBufferoosTable(expectedRows: Int) {
-        val bufferoosCursor = databaseHelper.getDatabase().query(Db.BufferooTable.TABLE_NAME,
+        val bufferoosCursor = databaseHelper.database.query(Db.BufferooTable.TABLE_NAME,
                 null, null, null, null, null, null)
         bufferoosCursor.moveToFirst()
         val numberOfRows = bufferoosCursor.count
