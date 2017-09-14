@@ -1,12 +1,8 @@
 package org.buffer.android.boilerplate.cache
 
-import android.database.sqlite.SQLiteDatabase
 import io.reactivex.Completable
-import io.reactivex.Single
-import org.buffer.android.boilerplate.cache.db.Db
-import org.buffer.android.boilerplate.cache.db.DbOpenHelper
-import org.buffer.android.boilerplate.cache.db.constants.BufferooConstants
-import org.buffer.android.boilerplate.cache.db.mapper.BufferooMapper
+import io.reactivex.Observable
+import org.buffer.android.boilerplate.cache.db.BufferoosDatabase
 import org.buffer.android.boilerplate.cache.mapper.BufferooEntityMapper
 import org.buffer.android.boilerplate.cache.model.CachedBufferoo
 import org.buffer.android.boilerplate.data.model.BufferooEntity
@@ -18,21 +14,18 @@ import javax.inject.Inject
  * [BufferooCache] from the Data layer as it is that layers responsibility for defining the
  * operations in which data store implementation layers can carry out.
  */
-class BufferooCacheImpl @Inject constructor(dbOpenHelper: DbOpenHelper,
+class BufferooCacheImpl @Inject constructor(val bufferoosDatabase: BufferoosDatabase,
                                             private val entityMapper: BufferooEntityMapper,
-                                            private val mapper: BufferooMapper,
                                             private val preferencesHelper: PreferencesHelper):
         BufferooCache {
 
     private val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
 
-    private var database: SQLiteDatabase = dbOpenHelper.writableDatabase
-
     /**
      * Retrieve an instance from the database, used for tests
      */
-    internal fun getDatabase(): SQLiteDatabase {
-        return database
+    internal fun getDatabase(): BufferoosDatabase {
+        return bufferoosDatabase
     }
 
     /**
@@ -40,13 +33,7 @@ class BufferooCacheImpl @Inject constructor(dbOpenHelper: DbOpenHelper,
      */
     override fun clearBufferoos(): Completable {
         return Completable.defer {
-            database.beginTransaction()
-            try {
-                database.delete(Db.BufferooTable.TABLE_NAME, null, null)
-                database.setTransactionSuccessful()
-            } finally {
-                database.endTransaction()
-            }
+            bufferoosDatabase.cachedBufferooDao().clearBufferoos()
             Completable.complete()
         }
     }
@@ -56,14 +43,9 @@ class BufferooCacheImpl @Inject constructor(dbOpenHelper: DbOpenHelper,
      */
     override fun saveBufferoos(bufferoos: List<BufferooEntity>): Completable {
         return Completable.defer {
-            database.beginTransaction()
-            try {
-                bufferoos.forEach {
-                    saveBufferoo(entityMapper.mapToCached(it))
-                }
-                database.setTransactionSuccessful()
-            } finally {
-                database.endTransaction()
+            bufferoos.forEach {
+                bufferoosDatabase.cachedBufferooDao().insertBufferoo(
+                        entityMapper.mapToCached(it))
             }
             Completable.complete()
         }
@@ -72,33 +54,19 @@ class BufferooCacheImpl @Inject constructor(dbOpenHelper: DbOpenHelper,
     /**
      * Retrieve a list of [BufferooEntity] instances from the database.
      */
-    override fun getBufferoos(): Single<List<BufferooEntity>> {
-        return Single.defer<List<BufferooEntity>> {
-            val updatesCursor = database.rawQuery(BufferooConstants.QUERY_GET_ALL_BUFFEROOS, null)
-            val bufferoos = mutableListOf<BufferooEntity>()
-
-            while (updatesCursor.moveToNext()) {
-                val cachedBufferoo = mapper.parseCursor(updatesCursor)
-                bufferoos.add(entityMapper.mapFromCached(cachedBufferoo))
-            }
-
-            updatesCursor.close()
-            Single.just<List<BufferooEntity>>(bufferoos)
+    override fun getBufferoos(): Observable<List<BufferooEntity>> {
+        return Observable.defer {
+            Observable.just(bufferoosDatabase.cachedBufferooDao().getBufferoos())
+        }.map {
+            it.map { entityMapper.mapFromCached(it) }
         }
-    }
-
-    /**
-     * Helper method for saving a [CachedBufferoo] instance to the database.
-     */
-    private fun saveBufferoo(cachedBufferoo: CachedBufferoo) {
-        database.insert(Db.BufferooTable.TABLE_NAME, null, mapper.toContentValues(cachedBufferoo))
     }
 
     /**
      * Checked whether there are instances of [CachedBufferoo] stored in the cache
      */
     override fun isCached(): Boolean {
-        return database.rawQuery(BufferooConstants.QUERY_GET_ALL_BUFFEROOS, null).count > 0
+        return bufferoosDatabase.cachedBufferooDao().getBufferoos().isNotEmpty()
     }
 
     /**

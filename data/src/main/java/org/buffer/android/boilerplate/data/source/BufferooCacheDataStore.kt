@@ -1,7 +1,7 @@
 package org.buffer.android.boilerplate.data.source
 
 import io.reactivex.Completable
-import io.reactivex.Single
+import io.reactivex.Observable
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.data.repository.BufferooCache
 import org.buffer.android.boilerplate.data.repository.BufferooDataStore
@@ -34,7 +34,7 @@ open class BufferooCacheDataStore @Inject constructor(private val bufferooCache:
     /**
      * Retrieve a list of [BufferooEntity] instance from the cache
      */
-    override fun getBufferoos(): Single<List<BufferooEntity>> {
+    override fun getBufferoos(): Observable<List<BufferooEntity>> {
         return bufferooCache.getBufferoos()
     }
 

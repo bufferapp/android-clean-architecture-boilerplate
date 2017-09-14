@@ -25,7 +25,7 @@ ext {
     okHttpVersion = '3.8.1'
     androidAnnotationsVersion = '21.0.3'
     retrofitVersion = '2.3.0'
-    roomVersion = '1.0.0-alpha6'
+    roomVersion = '1.0.0-alpha9'
     supportLibraryVersion = '26.0.1'
     timberVersion = '4.5.1'
     glideVersion = '4.0.0'
@@ -121,7 +121,7 @@ ext {
             androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
             roomRuntime:        "android.arch.persistence.room:runtime:${roomVersion}",
             roomCompiler:       "android.arch.persistence.room:compiler:${roomVersion}",
-            roomRxJava:         "android.arch.persistence.room:rxjava2:${roomVersion}",
+            roomRxJava:         "android.arch.persistence.room:rxjava2:${roomVersion}"
     ]
 
     cacheTestDependencies = [
@@ -179,7 +179,10 @@ ext {
             timber:             "com.jakewharton.timber:timber:${timberVersion}",
             daggerSupport:      "com.google.dagger:dagger-android-support:${daggerVersion}",
             daggerProcessor:    "com.google.dagger:dagger-android-processor:${daggerVersion}",
-            glassfishAnnotation: "org.glassfish:javax.annotation:${glassfishAnnotationVersion}"
+            glassfishAnnotation: "org.glassfish:javax.annotation:${glassfishAnnotationVersion}",
+            roomRuntime:        "android.arch.persistence.room:runtime:${roomVersion}",
+            roomCompiler:       "android.arch.persistence.room:compiler:${roomVersion}",
+            roomRxJava:         "android.arch.persistence.room:rxjava2:${roomVersion}",
     ]
 
     mobileUiTestDependencies = [

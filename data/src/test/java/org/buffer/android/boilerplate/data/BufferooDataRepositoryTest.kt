@@ -2,7 +2,7 @@ package org.buffer.android.boilerplate.data
 
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Completable
-import io.reactivex.Single
+import io.reactivex.Observable
 import org.buffer.android.boilerplate.data.mapper.BufferooMapper
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.data.repository.BufferooDataStore
@@ -88,7 +88,7 @@ class BufferooDataRepositoryTest {
     @Test
     fun getBufferoosCompletes() {
         stubBufferooDataStoreFactoryRetrieveDataStore(bufferooCacheDataStore)
-        stubBufferooCacheDataStoreGetBufferoos(Single.just(
+        stubBufferooCacheDataStoreGetBufferoos(Observable.just(
                 BufferooFactory.makeBufferooEntityList(2)))
         val testObserver = bufferooDataRepository.getBufferoos().test()
         testObserver.assertComplete()
@@ -101,7 +101,7 @@ class BufferooDataRepositoryTest {
         val bufferooEntities = BufferooFactory.makeBufferooEntityList(2)
         bufferoos.forEachIndexed { index, bufferoo ->
             stubBufferooMapperMapFromEntity(bufferooEntities[index], bufferoo) }
-        stubBufferooCacheDataStoreGetBufferoos(Single.just(bufferooEntities))
+        stubBufferooCacheDataStoreGetBufferoos(Observable.just(bufferooEntities))
 
         val testObserver = bufferooDataRepository.getBufferoos().test()
         testObserver.assertValue(bufferoos)
@@ -130,12 +130,12 @@ class BufferooDataRepositoryTest {
                 .thenReturn(completable)
     }
 
-    private fun stubBufferooCacheDataStoreGetBufferoos(single: Single<List<BufferooEntity>>) {
+    private fun stubBufferooCacheDataStoreGetBufferoos(single: Observable<List<BufferooEntity>>) {
         whenever(bufferooCacheDataStore.getBufferoos())
                 .thenReturn(single)
     }
 
-    private fun stubBufferooRemoteDataStoreGetBufferoos(single: Single<List<BufferooEntity>>) {
+    private fun stubBufferooRemoteDataStoreGetBufferoos(single: Observable<List<BufferooEntity>>) {
         whenever(bufferooRemoteDataStore.getBufferoos())
                 .thenReturn(single)
     }

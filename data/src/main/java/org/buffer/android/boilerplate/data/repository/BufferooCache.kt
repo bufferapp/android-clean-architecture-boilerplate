@@ -1,7 +1,7 @@
 package org.buffer.android.boilerplate.data.repository
 
 import io.reactivex.Completable
-import io.reactivex.Single
+import io.reactivex.Observable
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 
 /**
@@ -23,7 +23,7 @@ interface BufferooCache {
     /**
      * Retrieve a list of Bufferoos, from the cache
      */
-    fun getBufferoos(): Single<List<BufferooEntity>>
+    fun getBufferoos(): Observable<List<BufferooEntity>>
 
     /**
      * Checks if an element (User) exists in the cache.

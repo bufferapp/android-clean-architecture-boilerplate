@@ -1,6 +1,7 @@
 package org.buffer.android.boilerplate.data.test.factory
 
 import org.buffer.android.boilerplate.data.model.BufferooEntity
+import org.buffer.android.boilerplate.data.test.factory.DataFactory.Factory.randomLong
 import org.buffer.android.boilerplate.data.test.factory.DataFactory.Factory.randomUuid
 import org.buffer.android.boilerplate.domain.model.Bufferoo
 
@@ -12,11 +13,11 @@ class BufferooFactory {
     companion object Factory {
 
         fun makeBufferooEntity(): BufferooEntity {
-            return BufferooEntity(randomUuid(), randomUuid(), randomUuid())
+            return BufferooEntity(randomLong(), randomUuid(), randomUuid(), randomUuid())
         }
 
         fun makeBufferoo(): Bufferoo {
-            return Bufferoo(randomUuid(), randomUuid(), randomUuid())
+            return Bufferoo(randomLong(), randomUuid(), randomUuid(), randomUuid())
         }
 
         fun makeBufferooEntityList(count: Int): List<BufferooEntity> {

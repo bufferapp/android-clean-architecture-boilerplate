@@ -1,7 +1,7 @@
 package org.buffer.android.boilerplate.presentation.browse
 
 import com.nhaarman.mockito_kotlin.*
-import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.observers.DisposableObserver
 import org.buffer.android.boilerplate.domain.interactor.browse.GetBufferoos
 import org.buffer.android.boilerplate.domain.model.Bufferoo
 import org.buffer.android.boilerplate.presentation.mapper.BufferooMapper
@@ -19,11 +19,11 @@ class BrowseBufferoosPresenterTest {
     private lateinit var mockGetBufferoos: GetBufferoos
 
     private lateinit var browseBufferoosPresenter: BrowseBufferoosPresenter
-    private lateinit var captor: KArgumentCaptor<DisposableSingleObserver<List<Bufferoo>>>
+    private lateinit var captor: KArgumentCaptor<DisposableObserver<List<Bufferoo>>>
 
     @Before
     fun setup() {
-        captor = argumentCaptor<DisposableSingleObserver<List<Bufferoo>>>()
+        captor = argumentCaptor<DisposableObserver<List<Bufferoo>>>()
         mockBrowseBufferoosView = mock()
         mockBufferooMapper = mock()
         mockGetBufferoos = mock()
@@ -37,7 +37,7 @@ class BrowseBufferoosPresenterTest {
         browseBufferoosPresenter.retrieveBufferoos()
 
         verify(mockGetBufferoos).execute(captor.capture(), eq(null))
-        captor.firstValue.onSuccess(BufferooFactory.makeBufferooList(2))
+        captor.firstValue.onNext(BufferooFactory.makeBufferooList(2))
         verify(mockBrowseBufferoosView).hideErrorState()
     }
 
@@ -46,7 +46,7 @@ class BrowseBufferoosPresenterTest {
         browseBufferoosPresenter.retrieveBufferoos()
 
         verify(mockGetBufferoos).execute(captor.capture(), eq(null))
-        captor.firstValue.onSuccess(BufferooFactory.makeBufferooList(2))
+        captor.firstValue.onNext(BufferooFactory.makeBufferooList(2))
         verify(mockBrowseBufferoosView).hideEmptyState()
     }
 
@@ -56,7 +56,7 @@ class BrowseBufferoosPresenterTest {
         browseBufferoosPresenter.retrieveBufferoos()
 
         verify(mockGetBufferoos).execute(captor.capture(), eq(null))
-        captor.firstValue.onSuccess(bufferoos)
+        captor.firstValue.onNext(bufferoos)
         verify(mockBrowseBufferoosView).showBufferoos(
                 bufferoos.map { mockBufferooMapper.mapToView(it) })
     }
@@ -66,7 +66,7 @@ class BrowseBufferoosPresenterTest {
         browseBufferoosPresenter.retrieveBufferoos()
 
         verify(mockGetBufferoos).execute(captor.capture(), eq(null))
-        captor.firstValue.onSuccess(BufferooFactory.makeBufferooList(0))
+        captor.firstValue.onNext(BufferooFactory.makeBufferooList(0))
         verify(mockBrowseBufferoosView).showEmptyState()
     }
 
@@ -75,7 +75,7 @@ class BrowseBufferoosPresenterTest {
         browseBufferoosPresenter.retrieveBufferoos()
 
         verify(mockGetBufferoos).execute(captor.capture(), eq(null))
-        captor.firstValue.onSuccess(BufferooFactory.makeBufferooList(0))
+        captor.firstValue.onNext(BufferooFactory.makeBufferooList(0))
         verify(mockBrowseBufferoosView).hideBufferoos()
     }
 

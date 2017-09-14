@@ -1,6 +1,7 @@
 package org.buffer.android.boilerplate.domain.test.factory
 
 import org.buffer.android.boilerplate.domain.model.Bufferoo
+import org.buffer.android.boilerplate.domain.test.factory.DataFactory.Factory.randomLong
 import org.buffer.android.boilerplate.domain.test.factory.DataFactory.Factory.randomUuid
 
 /**
@@ -19,7 +20,7 @@ class BufferooFactory {
         }
 
         fun makeBufferoo(): Bufferoo {
-            return Bufferoo(randomUuid(), randomUuid(), randomUuid())
+            return Bufferoo(randomLong(), randomUuid(), randomUuid(), randomUuid())
         }
 
     }

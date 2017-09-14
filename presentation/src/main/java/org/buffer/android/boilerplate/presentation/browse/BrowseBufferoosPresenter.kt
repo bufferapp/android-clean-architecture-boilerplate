@@ -1,13 +1,13 @@
 package org.buffer.android.boilerplate.presentation.browse
 
-import io.reactivex.observers.DisposableSingleObserver
-import org.buffer.android.boilerplate.domain.interactor.SingleUseCase
+import io.reactivex.observers.DisposableObserver
+import org.buffer.android.boilerplate.domain.interactor.ObservableUseCase
 import org.buffer.android.boilerplate.domain.model.Bufferoo
 import org.buffer.android.boilerplate.presentation.mapper.BufferooMapper
 import javax.inject.Inject
 
 class BrowseBufferoosPresenter @Inject constructor(val browseView: BrowseBufferoosContract.View,
-                                                   val getBufferoosUseCase: SingleUseCase<List<Bufferoo>, Void>,
+                                                   val getBufferoosUseCase: ObservableUseCase<List<Bufferoo>, Void>,
                                                    val bufferooMapper: BufferooMapper):
         BrowseBufferoosContract.Presenter {
 
@@ -38,9 +38,11 @@ class BrowseBufferoosPresenter @Inject constructor(val browseView: BrowseBuffero
         }
     }
 
-    inner class BufferooSubscriber: DisposableSingleObserver<List<Bufferoo>>() {
+    inner class BufferooSubscriber: DisposableObserver<List<Bufferoo>>() {
 
-        override fun onSuccess(t: List<Bufferoo>) {
+        override fun onComplete() { }
+
+        override fun onNext(t: List<Bufferoo>) {
             handleGetBufferoosSuccess(t)
         }
 

@@ -14,7 +14,7 @@ open class BufferooEntityMapper @Inject constructor(): EntityMapper<BufferooMode
      * Map an instance of a [BufferooModel] to a [BufferooEntity] model
      */
     override fun mapFromRemote(type: BufferooModel): BufferooEntity {
-        return BufferooEntity(type.name, type.title, type.avatar)
+        return BufferooEntity(type.id, type.name, type.title, type.avatar)
     }
 
 }

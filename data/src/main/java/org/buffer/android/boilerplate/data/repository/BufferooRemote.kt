@@ -1,6 +1,6 @@
 package org.buffer.android.boilerplate.data.repository
 
-import io.reactivex.Single
+import io.reactivex.Observable
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 
 /**
@@ -12,6 +12,6 @@ interface BufferooRemote {
     /**
      * Retrieve a list of Bufferoos, from the cache
      */
-    fun getBufferoos(): Single<List<BufferooEntity>>
+    fun getBufferoos(): Observable<List<BufferooEntity>>
 
 }

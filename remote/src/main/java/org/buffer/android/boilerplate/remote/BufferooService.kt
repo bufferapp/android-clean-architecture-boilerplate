@@ -1,6 +1,6 @@
 package org.buffer.android.boilerplate.remote
 
-import io.reactivex.Single
+import io.reactivex.Observable
 import org.buffer.android.boilerplate.remote.model.BufferooModel
 import retrofit2.http.GET
 
@@ -9,8 +9,8 @@ import retrofit2.http.GET
  */
 interface BufferooService {
 
-    @GET("team-abk9.json")
-    fun getBufferoos(): Single<BufferooResponse>
+    @GET("team.json")
+    fun getBufferoos(): Observable<BufferooResponse>
 
     class BufferooResponse {
         lateinit var team: List<BufferooModel>

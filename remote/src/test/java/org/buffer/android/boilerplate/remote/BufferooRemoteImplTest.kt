@@ -2,7 +2,7 @@ package org.buffer.android.boilerplate.remote
 
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
-import io.reactivex.Single
+import io.reactivex.Observable
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.remote.mapper.BufferooEntityMapper
 import org.buffer.android.boilerplate.remote.test.factory.BufferooFactory
@@ -29,7 +29,7 @@ class BufferooRemoteImplTest {
     //<editor-fold desc="Get Bufferoos">
     @Test
     fun getBufferoosCompletes() {
-        stubBufferooServiceGetBufferoos(Single.just(BufferooFactory.makeBufferooResponse()))
+        stubBufferooServiceGetBufferoos(Observable.just(BufferooFactory.makeBufferooResponse()))
         val testObserver = bufferooRemoteImpl.getBufferoos().test()
         testObserver.assertComplete()
     }
@@ -37,7 +37,7 @@ class BufferooRemoteImplTest {
     @Test
     fun getBufferoosReturnsData() {
         val bufferooResponse = BufferooFactory.makeBufferooResponse()
-        stubBufferooServiceGetBufferoos(Single.just(bufferooResponse))
+        stubBufferooServiceGetBufferoos(Observable.just(bufferooResponse))
         val bufferooEntities = mutableListOf<BufferooEntity>()
         bufferooResponse.team.forEach {
             bufferooEntities.add(entityMapper.mapFromRemote(it))
@@ -48,8 +48,9 @@ class BufferooRemoteImplTest {
     }
     //</editor-fold>
 
-    private fun stubBufferooServiceGetBufferoos(single: Single<BufferooService.BufferooResponse>) {
+    private fun stubBufferooServiceGetBufferoos(observable:
+                                                Observable<BufferooService.BufferooResponse>) {
         whenever(bufferooService.getBufferoos())
-                .thenReturn(single)
+                .thenReturn(observable)
     }
 }

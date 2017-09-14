@@ -1,12 +1,13 @@
 package org.buffer.android.boilerplate.ui.injection.module
 
 import android.app.Application
+import android.arch.persistence.room.Room
 import android.content.Context
 import dagger.Module
 import dagger.Provides
 import org.buffer.android.boilerplate.cache.BufferooCacheImpl
 import org.buffer.android.boilerplate.cache.PreferencesHelper
-import org.buffer.android.boilerplate.cache.db.DbOpenHelper
+import org.buffer.android.boilerplate.cache.db.BufferoosDatabase
 import org.buffer.android.boilerplate.cache.mapper.BufferooEntityMapper
 import org.buffer.android.boilerplate.data.BufferooDataRepository
 import org.buffer.android.boilerplate.data.executor.JobExecutor
@@ -52,11 +53,10 @@ open class ApplicationModule {
 
     @Provides
     @PerApplication
-    internal fun provideBufferooCache(factory: DbOpenHelper,
+    internal fun provideBufferooCache(database: BufferoosDatabase,
                                       entityMapper: BufferooEntityMapper,
-                                      mapper: org.buffer.android.boilerplate.cache.db.mapper.BufferooMapper,
                                       helper: PreferencesHelper): BufferooCache {
-        return BufferooCacheImpl(factory, entityMapper, mapper, helper)
+        return BufferooCacheImpl(database, entityMapper, helper)
     }
 
     @Provides
@@ -83,4 +83,14 @@ open class ApplicationModule {
     internal fun provideBufferooService(): BufferooService {
         return BufferooServiceFactory.makeBuffeoorService(BuildConfig.DEBUG)
     }
+
+    @Provides
+    @PerApplication
+    internal fun provideBufferoosDatabase(application: Application): BufferoosDatabase {
+        return Room.databaseBuilder(application.applicationContext,
+                BufferoosDatabase::class.java, "bufferoos.db")
+                .allowMainThreadQueries()
+                .build()
+    }
+
 }
