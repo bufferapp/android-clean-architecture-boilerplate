@@ -12,7 +12,7 @@ import javax.inject.Inject
  * operations in which data store implementation layers can carry out.
  */
 class BufferooRemoteImpl @Inject constructor(private val bufferooService: BufferooService,
-                                             private val entityMapper: BufferooEntityMapper):
+                                             private val entityMapper: BufferooEntityMapper) :
         BufferooRemote {
 
     /**
@@ -20,11 +20,10 @@ class BufferooRemoteImpl @Inject constructor(private val bufferooService: Buffer
      */
     override fun getBufferoos(): Single<List<BufferooEntity>> {
         return bufferooService.getBufferoos()
-                .map { it.team }
                 .map {
-                    val entities = mutableListOf<BufferooEntity>()
-                    it.forEach { entities.add(entityMapper.mapFromRemote(it)) }
-                    entities
+                    it.team.map { listItem ->
+                        entityMapper.mapFromRemote(listItem)
+                    }
                 }
     }
 
