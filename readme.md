@@ -50,7 +50,7 @@ Clean Architecture will not be appropriate for every project, so it is down to y
 
 The architecture of the project follows the principles of Clean Archicture. Here's how the sample project implements it:
 
-![architecture](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/architecture.png?raw=true)
+![architecture](https://github.com/bufferapp/android-clean-architecture-components-boilerplate/blob/master/art/architecture.png?raw=true)
 
 The sample app when run will show you a simple list of all the Bufferoos (Buffer team members!).
 <p align="center">
