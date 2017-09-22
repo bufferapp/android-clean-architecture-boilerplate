@@ -10,7 +10,7 @@ The caching layer now also uses Room.
 Welcome 👋 We hope this boilerplate is not only helpful to other developers, but also that it helps to educate in the area of architecture. We created this boilerplate for a few reasons:
 
 1. To experiment with modularisation
-2. TO experiment with the Android Architecture Components
+2. To experiment with the Android Architecture Components
 3. To share some approaches to clean architecture, especially as we've been [talking a lot about it](https://academy.realm.io/posts/converting-an-app-to-use-clean-architecture/)
 4. To use as a starting point in future projects where clean architecture feels appropriate
 
