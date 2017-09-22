@@ -14,14 +14,14 @@ import org.buffer.android.boilerplate.domain.executor.ThreadExecutor
 /**
  * Abstract class for a UseCase that returns an instance of a [Single].
  */
-abstract class ObservableUseCase<T, in Params> constructor(
+abstract class FlowableUseCase<T, in Params> constructor(
         private val threadExecutor: ThreadExecutor,
         private val postExecutionThread: PostExecutionThread) {
 
     private val disposables = CompositeDisposable()
 
     /**
-     * Builds a [Single] which will be used when the current [ObservableUseCase] is executed.
+     * Builds a [Single] which will be used when the current [FlowableUseCase] is executed.
      */
     protected abstract fun buildUseCaseObservable(params: Params? = null): Flowable<T>
 

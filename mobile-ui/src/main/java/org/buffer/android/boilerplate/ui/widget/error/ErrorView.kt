@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
+import kotlinx.android.synthetic.main.view_error.view.*
 import org.buffer.android.boilerplate.ui.R
 
 /**
@@ -28,6 +29,7 @@ class ErrorView : RelativeLayout {
 
     private fun init() {
         LayoutInflater.from(context).inflate(R.layout.view_error, this)
+        button_try_again.setOnClickListener { errorListener?.onTryAgainClicked() }
     }
 
 }

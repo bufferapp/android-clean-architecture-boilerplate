@@ -7,14 +7,16 @@
         android:id="@+id/text_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:text="@string/label_error_result" />
 
     <Button
         android:id="@+id/button_try_again"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_message"
+        android:layout_centerHorizontal="true"
         android:padding="16dp"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/button_try_again" />
 
 </merge>

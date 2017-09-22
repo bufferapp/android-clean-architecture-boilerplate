@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
+import kotlinx.android.synthetic.main.view_empty.view.*
 import org.buffer.android.boilerplate.ui.R
 
 /**
@@ -28,6 +29,7 @@ class EmptyView: RelativeLayout {
 
     private fun init() {
         LayoutInflater.from(context).inflate(R.layout.view_empty, this)
+        button_check_again.setOnClickListener { emptyListener?.onCheckAgainClicked() }
     }
 
 }

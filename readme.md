@@ -1,12 +1,18 @@
 [![Build Status](https://travis-ci.org/bufferapp/android-clean-architecture-boilerplate.svg?branch=master)](https://travis-ci.org/bufferapp/android-clean-architecture-boilerplate) [![codecov](https://codecov.io/gh/bufferapp/android-clean-architecture-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/bufferapp/android-clean-architecture-boilerplate) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/278fa00f492d48a288ab64188d15fb61)](https://www.codacy.com/app/hitherejoe/android-clean-architecture-boilerplate?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bufferapp/android-clean-architecture-boilerplate&amp;utm_campaign=Badge_Grade) 
 
-# Android Clean Architecture Boilerplate
+# Android Clean Architecture Components Boilerplate
+
+
+Note: This is a fork of our original [Clean Architecture Boilerplate](https://github.com/bufferapp/android-clean-architecture-boilerplate), except in this repo we have switched out the MVP approach found in the presentation layer to now use ViewModels from the Android Architecture Components Library.
+The caching layer now also uses Room.
+
 
 Welcome 👋 We hope this boilerplate is not only helpful to other developers, but also that it helps to educate in the area of architecture. We created this boilerplate for a few reasons:
 
 1. To experiment with modularisation
-2. To share some approaches to clean architecture, especially as we've been [talking a lot about it](https://academy.realm.io/posts/converting-an-app-to-use-clean-architecture/)
-3. To use as a starting point in future projects where clean architecture feels appropriate
+2. TO experiment with the Android Architecture Components
+3. To share some approaches to clean architecture, especially as we've been [talking a lot about it](https://academy.realm.io/posts/converting-an-app-to-use-clean-architecture/)
+4. To use as a starting point in future projects where clean architecture feels appropriate
 
 It is written 100% in Kotlin with both UI and Unit tests - we will also be keeping this up-to-date as libraries change!
 
@@ -19,6 +25,8 @@ Clean Architecture will not be appropriate for every project, so it is down to y
 ## Languages, libraries and tools used
 
 * [Kotlin](https://kotlinlang.org/)
+* [Room](https://developer.android.com/topic/libraries/architecture/room.html)
+* [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/index.html)
 * Android Support Libraries
 * [RxJava2](https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0)
 * [Dagger 2 (2.11)](https://github.com/google/dagger)
@@ -59,13 +67,11 @@ This layer makes use of the Android Framework and is used to create all of our U
 
 ### Presentation
 
-This layer's responsibilty is to handle the presentation of the User Interface, but at the same time knows nothing about the user interface itself. This layer has no dependance on the Android Framework, it is a pure Kotlin module. Each Presenter class that is created implements the [Presenter](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/BasePresenter.kt) interface defined within an instance of a contract - in this case the [BrowseContract](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/browse/BrowseBufferoosContract.kt), which also contains an interface for the [View](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/BaseView.kt) interface.
+This layer's responsibilty is to handle the presentation of the User Interface, but at the same time knows nothing about the user interface itself. This layer has no dependance on the Android Framework, it is a pure Kotlin module. Each ViewModel class that is created implements the ViewModel class found within the Architecture components library. This ViewModel can then be used by the UI layer to communicate with UseCases and retrieve data. The [BrowseBufferoosViewModel]() returns an instance of a Resource which contains data that can be used by the UI - this includes the [ResourceState](), data to be used by the UI and a message if required (for error states).
 
-When a Presenter is constructed, an instance of this View is passed in. This view is then used and the presenter is set for it using the implemented [setPresenter()](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/browse/BrowseBufferoosPresenter.kt#L15) call.
+The ViewModels use an instance of a [FlowableUseCase](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/FlowableUseCase.kt) from the Domain layer to retrieve data. Note here that there is no direct name reference to the UseCase that we are using - we do inject an instance of the [GetBufferoos](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/browse/GetBufferoos.kt) UseCase, however.
 
-The presenters use an instance of a [SingleUseCase](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/ObservableUseCase.kt) from the Domain layer to retrieve data. Note here that there is no direct name reference to the UseCase that we are using - we do inject an instance of the [GetBufferoos](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/browse/GetBufferoos.kt) UseCase, however.
-
-The presenter receives data from the Domain layer in the form of a [Bufferoo](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/model/BufferooView.kt). These instances are mapped to instance of this layers model, which is a BufferooView using the [BufferooMapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/mapper/BufferooMapper.kt).
+The ViewModel receives data from the Domain layer in the form of a [Bufferoo](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/model/BufferooView.kt). These instances are mapped to instance of this layers model, which is a BufferooView using the [BufferooMapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/mapper/BufferooMapper.kt).
 
 ### Domain
 
