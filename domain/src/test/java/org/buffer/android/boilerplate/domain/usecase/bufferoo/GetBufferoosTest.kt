@@ -3,7 +3,7 @@ package org.buffer.android.boilerplate.domain.usecase.bufferoo
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import org.buffer.android.boilerplate.domain.executor.PostExecutionThread
 import org.buffer.android.boilerplate.domain.executor.ThreadExecutor
 import org.buffer.android.boilerplate.domain.interactor.browse.GetBufferoos
@@ -38,7 +38,7 @@ class GetBufferoosTest {
 
     @Test
     fun buildUseCaseObservableCompletes() {
-        stubBufferooRepositoryGetBufferoos(Observable.just(BufferooFactory.makeBufferooList(2)))
+        stubBufferooRepositoryGetBufferoos(Flowable.just(BufferooFactory.makeBufferooList(2)))
         val testObserver = getBufferoos.buildUseCaseObservable(null).test()
         testObserver.assertComplete()
     }
@@ -46,12 +46,12 @@ class GetBufferoosTest {
     @Test
     fun buildUseCaseObservableReturnsData() {
         val bufferoos = BufferooFactory.makeBufferooList(2)
-        stubBufferooRepositoryGetBufferoos(Observable.just(bufferoos))
+        stubBufferooRepositoryGetBufferoos(Flowable.just(bufferoos))
         val testObserver = getBufferoos.buildUseCaseObservable(null).test()
         testObserver.assertValue(bufferoos)
     }
 
-    private fun stubBufferooRepositoryGetBufferoos(single: Observable<List<Bufferoo>>) {
+    private fun stubBufferooRepositoryGetBufferoos(single: Flowable<List<Bufferoo>>) {
         whenever(mockBufferooRepository.getBufferoos())
                 .thenReturn(single)
     }

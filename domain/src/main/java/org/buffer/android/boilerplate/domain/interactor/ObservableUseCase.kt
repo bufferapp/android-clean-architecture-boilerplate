@@ -1,11 +1,11 @@
 package org.buffer.android.boilerplate.domain.interactor
 
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subscribers.DisposableSubscriber
 import org.buffer.android.boilerplate.domain.executor.PostExecutionThread
 import org.buffer.android.boilerplate.domain.executor.ThreadExecutor
 
@@ -23,15 +23,15 @@ abstract class ObservableUseCase<T, in Params> constructor(
     /**
      * Builds a [Single] which will be used when the current [ObservableUseCase] is executed.
      */
-    protected abstract fun buildUseCaseObservable(params: Params? = null): Observable<T>
+    protected abstract fun buildUseCaseObservable(params: Params? = null): Flowable<T>
 
     /**
      * Executes the current use case.
      */
-    open fun execute(observer: DisposableObserver<T>, params: Params? = null) {
+    open fun execute(observer: DisposableSubscriber<T>, params: Params? = null) {
         val observable = this.buildUseCaseObservable(params)
                 .subscribeOn(Schedulers.from(threadExecutor))
-                .observeOn(postExecutionThread.scheduler) as Observable<T>
+                .observeOn(postExecutionThread.scheduler) as Flowable<T>
         addDisposable(observable.subscribeWith(observer))
     }
 

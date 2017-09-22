@@ -1,6 +1,7 @@
 package org.buffer.android.boilerplate.ui.injection.module
 
 import android.app.Application
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.persistence.room.Room
 import android.content.Context
 import dagger.Module
@@ -82,6 +83,12 @@ open class ApplicationModule {
     @PerApplication
     internal fun provideBufferooService(): BufferooService {
         return BufferooServiceFactory.makeBuffeoorService(BuildConfig.DEBUG)
+    }
+
+    @Provides
+    @PerApplication
+    internal fun provideViewModelFactory(): ViewModelProvider.Factory {
+        return ViewModelProvider.NewInstanceFactory()
     }
 
     @Provides

@@ -13,7 +13,7 @@ ext {
     androidCompileSdkVersion = 26
 
     //Libraries
-    kotlinVersion = '1.1.3-2'
+    kotlinVersion = '1.1.4-3'
     butterKnifeVersion = '7.0.1'
     recyclerViewVersion = '21.0.3'
     rxJavaVersion = '2.0.2'
@@ -25,8 +25,8 @@ ext {
     okHttpVersion = '3.8.1'
     androidAnnotationsVersion = '21.0.3'
     retrofitVersion = '2.3.0'
-    roomVersion = '1.0.0-alpha9'
-    supportLibraryVersion = '26.0.1'
+    roomVersion = '1.0.0-alpha9-1'
+    supportLibraryVersion = '26.1.0'
     timberVersion = '4.5.1'
     glideVersion = '4.0.0'
     daggerVersion = '2.11'
@@ -74,7 +74,10 @@ ext {
             androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
             retrofit:           "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitConverter:  "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-            retrofitAdapter:    "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+            retrofitAdapter:    "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            archRuntime:        "android.arch.lifecycle:runtime:${roomVersion}",
+            archExtensions:     "android.arch.lifecycle:extensions:${roomVersion}",
+            archCompiler:       "android.arch.lifecycle:compiler:${roomVersion}",
     ]
 
     presentationTestDependencies = [

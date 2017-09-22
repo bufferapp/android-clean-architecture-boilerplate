@@ -85,9 +85,11 @@ dependencies {
     implementation mobileUiDependencies.glide
     implementation mobileUiDependencies.dagger
     implementation mobileUiDependencies.daggerSupport
-    implementation mobileUiDependencies.roomRuntime
-    kapt mobileUiDependencies.roomCompiler
-    implementation mobileUiDependencies.roomRxJava
+
+    compile presentationDependencies.archRuntime
+    compile presentationDependencies.archExtensions
+    compile "android.arch.persistence.room:rxjava2:1.0.0-alpha9-1"
+    kapt presentationDependencies.archCompiler
 
     testImplementation mobileUiTestDependencies.kotlinJUnit
 

@@ -1,7 +1,7 @@
 package org.buffer.android.boilerplate.cache
 
 import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import org.buffer.android.boilerplate.cache.db.BufferoosDatabase
 import org.buffer.android.boilerplate.cache.mapper.BufferooEntityMapper
 import org.buffer.android.boilerplate.cache.model.CachedBufferoo
@@ -54,9 +54,9 @@ class BufferooCacheImpl @Inject constructor(val bufferoosDatabase: BufferoosData
     /**
      * Retrieve a list of [BufferooEntity] instances from the database.
      */
-    override fun getBufferoos(): Observable<List<BufferooEntity>> {
-        return Observable.defer {
-            Observable.just(bufferoosDatabase.cachedBufferooDao().getBufferoos())
+    override fun getBufferoos(): Flowable<List<BufferooEntity>> {
+        return Flowable.defer {
+            Flowable.just(bufferoosDatabase.cachedBufferooDao().getBufferoos())
         }.map {
             it.map { entityMapper.mapFromCached(it) }
         }

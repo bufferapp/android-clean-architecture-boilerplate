@@ -1,14 +1,11 @@
 package org.buffer.android.boilerplate.ui.injection.module
 
+import android.arch.lifecycle.ViewModelProvider
 import dagger.Module
 import dagger.Provides
-import org.buffer.android.boilerplate.domain.interactor.browse.GetBufferoos
-import org.buffer.android.boilerplate.presentation.browse.BrowseBufferoosContract
-import org.buffer.android.boilerplate.presentation.browse.BrowseBufferoosPresenter
-import org.buffer.android.boilerplate.presentation.mapper.BufferooMapper
-import org.buffer.android.boilerplate.ui.browse.BrowseActivity
-import org.buffer.android.boilerplate.ui.injection.scopes.PerActivity
-
+import org.buffer.android.boilerplate.presentation.browse.BrowseBufferoosViewModel
+import org.buffer.android.boilerplate.presentation.util.ViewModelUtil
+import javax.inject.Singleton
 
 
 /**
@@ -17,18 +14,11 @@ import org.buffer.android.boilerplate.ui.injection.scopes.PerActivity
 @Module
 open class BrowseActivityModule {
 
-    @PerActivity
+    @Singleton
     @Provides
-    internal fun provideBrowseView(browseActivity: BrowseActivity): BrowseBufferoosContract.View {
-        return browseActivity
-    }
-
-    @PerActivity
-    @Provides
-    internal fun provideBrowsePresenter(mainView: BrowseBufferoosContract.View,
-                                        getBufferoos: GetBufferoos, mapper: BufferooMapper):
-            BrowseBufferoosContract.Presenter {
-        return BrowseBufferoosPresenter(mainView, getBufferoos, mapper)
+    fun provideViewModel(viewModelUtil: ViewModelUtil, viewModel: BrowseBufferoosViewModel):
+            ViewModelProvider.Factory {
+        return viewModelUtil.createFor(viewModel)
     }
 
 }

@@ -1,8 +1,7 @@
 package org.buffer.android.boilerplate.data.source
 
 import io.reactivex.Completable
-import io.reactivex.Observable
-import io.reactivex.Single
+import io.reactivex.Flowable
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.data.repository.BufferooDataStore
 import org.buffer.android.boilerplate.data.repository.BufferooRemote
@@ -26,7 +25,7 @@ open class BufferooRemoteDataStore @Inject constructor(private val bufferooRemot
     /**
      * Retrieve a list of [BufferooEntity] instances from the API
      */
-    override fun getBufferoos(): Observable<List<BufferooEntity>> {
+    override fun getBufferoos(): Flowable<List<BufferooEntity>> {
         return bufferooRemote.getBufferoos()
     }
 

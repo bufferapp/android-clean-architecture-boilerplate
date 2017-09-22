@@ -1,4 +1,4 @@
-package org.buffer.android.boilerplate.ui.test.factory
+package org.buffer.android.boilerplate.ui.test.util
 
 import org.buffer.android.boilerplate.domain.model.Bufferoo
 import org.buffer.android.boilerplate.presentation.model.BufferooView

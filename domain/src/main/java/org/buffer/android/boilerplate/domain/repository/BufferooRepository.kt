@@ -1,7 +1,7 @@
 package org.buffer.android.boilerplate.domain.repository
 
 import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import org.buffer.android.boilerplate.domain.model.Bufferoo
 
 /**
@@ -15,6 +15,6 @@ interface BufferooRepository {
 
     fun saveBufferoos(bufferoos: List<Bufferoo>): Completable
 
-    fun getBufferoos(): Observable<List<Bufferoo>>
+    fun getBufferoos(): Flowable<List<Bufferoo>>
 
 }

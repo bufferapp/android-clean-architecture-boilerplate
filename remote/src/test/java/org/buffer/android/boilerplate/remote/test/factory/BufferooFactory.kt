@@ -1,8 +1,9 @@
 package org.buffer.android.boilerplate.remote.test.factory
 
-import org.buffer.android.boilerplate.remote.test.factory.DataFactory.Factory.randomUuid
 import org.buffer.android.boilerplate.remote.BufferooService
 import org.buffer.android.boilerplate.remote.model.BufferooModel
+import org.buffer.android.boilerplate.remote.test.factory.DataFactory.Factory.randomLong
+import org.buffer.android.boilerplate.remote.test.factory.DataFactory.Factory.randomUuid
 
 /**
  * Factory class for Bufferoo related instances
@@ -26,7 +27,7 @@ class BufferooFactory {
         }
 
         fun makeBufferooModel(): BufferooModel {
-            return BufferooModel(randomUuid(), randomUuid(), randomUuid())
+            return BufferooModel(randomLong(), randomUuid(), randomUuid(), randomUuid())
         }
 
     }

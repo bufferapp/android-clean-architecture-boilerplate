@@ -1,7 +1,7 @@
 package org.buffer.android.boilerplate.data
 
 import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import org.buffer.android.boilerplate.data.mapper.BufferooMapper
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.data.source.BufferooDataStoreFactory
@@ -28,19 +28,17 @@ class BufferooDataRepository @Inject constructor(private val factory: BufferooDa
         return factory.retrieveCacheDataStore().saveBufferoos(bufferooEntities)
     }
 
-    override fun getBufferoos(): Observable<List<Bufferoo>> {
+    override fun getBufferoos(): Flowable<List<Bufferoo>> {
         val dataStore = factory.retrieveDataStore()
         return dataStore.getBufferoos()
                 .flatMap {
-                    val bufferoos = mutableListOf<Bufferoo>()
-                    it.map { bufferoos.add(bufferooMapper.mapFromEntity(it)) }
-                    Observable.just(bufferoos)
+                    Flowable.just(it.map { bufferooMapper.mapFromEntity(it) })
                 }
                 .flatMap {
                     if (dataStore is BufferooRemoteDataStore) {
-                        saveBufferoos(it).toSingle { it }.toObservable()
+                        saveBufferoos(it).toSingle { it }.toFlowable()
                     } else {
-                        Observable.just(it)
+                        Flowable.just(it)
                     }
                 }
     }

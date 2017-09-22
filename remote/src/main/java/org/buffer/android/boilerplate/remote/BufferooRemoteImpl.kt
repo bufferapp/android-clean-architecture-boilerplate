@@ -1,5 +1,6 @@
 package org.buffer.android.boilerplate.remote
 
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.data.repository.BufferooRemote
@@ -18,7 +19,7 @@ class BufferooRemoteImpl @Inject constructor(private val bufferooService: Buffer
     /**
      * Retrieve a list of [BufferooEntity] instances from the [BufferooService].
      */
-    override fun getBufferoos(): Observable<List<BufferooEntity>> {
+    override fun getBufferoos(): Flowable<List<BufferooEntity>> {
         return bufferooService.getBufferoos()
                 .map { it.team }
                 .map {

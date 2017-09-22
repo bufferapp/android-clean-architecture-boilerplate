@@ -2,7 +2,7 @@ package org.buffer.android.boilerplate.data.source
 
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.data.repository.BufferooRemote
 import org.buffer.android.boilerplate.data.test.factory.BufferooFactory
@@ -41,14 +41,14 @@ class BufferooRemoteDataStoreTest {
     //<editor-fold desc="Get Bufferoos">
     @Test
     fun getBufferoosCompletes() {
-        stubBufferooCacheGetBufferoos(Observable.just(BufferooFactory.makeBufferooEntityList(2)))
+        stubBufferooCacheGetBufferoos(Flowable.just(BufferooFactory.makeBufferooEntityList(2)))
         val testObserver = bufferooRemote.getBufferoos().test()
         testObserver.assertComplete()
     }
     //</editor-fold>
 
     //<editor-fold desc="Stub helper methods">
-    private fun stubBufferooCacheGetBufferoos(single: Observable<List<BufferooEntity>>) {
+    private fun stubBufferooCacheGetBufferoos(single: Flowable<List<BufferooEntity>>) {
         whenever(bufferooRemote.getBufferoos())
                 .thenReturn(single)
     }

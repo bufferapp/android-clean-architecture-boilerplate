@@ -8,11 +8,11 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import com.nhaarman.mockito_kotlin.whenever
-import io.reactivex.Single
+import io.reactivex.Flowable
 import org.buffer.android.boilerplate.domain.model.Bufferoo
 import org.buffer.android.boilerplate.ui.R
 import org.buffer.android.boilerplate.ui.test.TestApplication
-import org.buffer.android.boilerplate.ui.test.factory.ui.BufferooFactory
+import org.buffer.android.boilerplate.ui.test.util.BufferooFactory
 import org.buffer.android.boilerplate.ui.test.util.RecyclerViewMatcher
 import org.junit.Rule
 import org.junit.Test
@@ -27,14 +27,14 @@ class BrowseActivityTest {
 
     @Test
     fun activityLaunches() {
-        stubBufferooRepositoryGetBufferoos(Single.just(BufferooFactory.makeBufferooList(2)))
+        stubBufferooRepositoryGetBufferoos(Flowable.just(BufferooFactory.makeBufferooList(2)))
         activity.launchActivity(null)
     }
 
     @Test
     fun bufferoosDisplay() {
         val bufferoos = BufferooFactory.makeBufferooList(1)
-        stubBufferooRepositoryGetBufferoos(Single.just(bufferoos))
+        stubBufferooRepositoryGetBufferoos(Flowable.just(bufferoos))
         activity.launchActivity(null)
 
         checkBufferooDetailsDisplay(bufferoos[0], 0)
@@ -43,7 +43,7 @@ class BrowseActivityTest {
     @Test
     fun bufferoosAreScrollable() {
         val bufferoos = BufferooFactory.makeBufferooList(20)
-        stubBufferooRepositoryGetBufferoos(Single.just(bufferoos))
+        stubBufferooRepositoryGetBufferoos(Flowable.just(bufferoos))
         activity.launchActivity(null)
 
         bufferoos.forEachIndexed { index, bufferoo ->
@@ -59,7 +59,7 @@ class BrowseActivityTest {
                 .check(matches(hasDescendant(withText(bufferoo.title))))
     }
 
-    private fun stubBufferooRepositoryGetBufferoos(single: Single<List<Bufferoo>>) {
+    private fun stubBufferooRepositoryGetBufferoos(single: Flowable<List<Bufferoo>>) {
         whenever(TestApplication.appComponent().bufferooRepository().getBufferoos())
                 .thenReturn(single)
     }

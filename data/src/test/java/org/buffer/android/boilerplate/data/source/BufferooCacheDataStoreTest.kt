@@ -4,7 +4,7 @@ import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.data.repository.BufferooCache
 import org.buffer.android.boilerplate.data.test.factory.BufferooFactory
@@ -48,7 +48,7 @@ class BufferooCacheDataStoreTest {
     //<editor-fold desc="Get Bufferoos">
     @Test
     fun getBufferoosCompletes() {
-        stubBufferooCacheGetBufferoos(Observable.just(BufferooFactory.makeBufferooEntityList(2)))
+        stubBufferooCacheGetBufferoos(Flowable.just(BufferooFactory.makeBufferooEntityList(2)))
         val testObserver = bufferooCacheDataStore.getBufferoos().test()
         testObserver.assertComplete()
     }
@@ -60,7 +60,7 @@ class BufferooCacheDataStoreTest {
                 .thenReturn(completable)
     }
 
-    private fun stubBufferooCacheGetBufferoos(single: Observable<List<BufferooEntity>>) {
+    private fun stubBufferooCacheGetBufferoos(single: Flowable<List<BufferooEntity>>) {
         whenever(bufferooCache.getBufferoos())
                 .thenReturn(single)
     }

@@ -1,6 +1,6 @@
 package org.buffer.android.boilerplate.domain.interactor.browse
 
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import org.buffer.android.boilerplate.domain.executor.PostExecutionThread
 import org.buffer.android.boilerplate.domain.executor.ThreadExecutor
 import org.buffer.android.boilerplate.domain.interactor.ObservableUseCase
@@ -16,7 +16,7 @@ open class GetBufferoos @Inject constructor(val bufferooRepository: BufferooRepo
                                             postExecutionThread: PostExecutionThread):
         ObservableUseCase<List<Bufferoo>, Void?>(threadExecutor, postExecutionThread) {
 
-    public override fun buildUseCaseObservable(params: Void?): Observable<List<Bufferoo>> {
+    public override fun buildUseCaseObservable(params: Void?): Flowable<List<Bufferoo>> {
         return bufferooRepository.getBufferoos()
     }
 
