@@ -16,13 +16,13 @@ import javax.inject.Inject
  */
 class BufferooCacheImpl @Inject constructor(val bufferoosDatabase: BufferoosDatabase,
                                             private val entityMapper: BufferooEntityMapper,
-                                            private val preferencesHelper: PreferencesHelper):
+                                            private val preferencesHelper: PreferencesHelper) :
         BufferooCache {
 
     private val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
 
     /**
-     * Retrieve an instance from the database, used for tests
+     * Retrieve an instance from the database, used for tests.
      */
     internal fun getDatabase(): BufferoosDatabase {
         return bufferoosDatabase
@@ -63,21 +63,21 @@ class BufferooCacheImpl @Inject constructor(val bufferoosDatabase: BufferoosData
     }
 
     /**
-     * Checked whether there are instances of [CachedBufferoo] stored in the cache
+     * Check whether there are instances of [CachedBufferoo] stored in the cache.
      */
     override fun isCached(): Boolean {
         return bufferoosDatabase.cachedBufferooDao().getBufferoos().isNotEmpty()
     }
 
     /**
-     * Set a point in time at when the cache was last updated
+     * Set a point in time at when the cache was last updated.
      */
     override fun setLastCacheTime(lastCache: Long) {
         preferencesHelper.lastCacheTime = lastCache
     }
 
     /**
-     * Check whether the current cached data exceeds the defined [EXPIRATION_TIME] time
+     * Check whether the current cached data exceeds the defined [EXPIRATION_TIME] time.
      */
     override fun isExpired(): Boolean {
         val currentTime = System.currentTimeMillis()
