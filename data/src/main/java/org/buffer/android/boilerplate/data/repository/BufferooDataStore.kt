@@ -2,6 +2,7 @@ package org.buffer.android.boilerplate.data.repository
 
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 
 /**
@@ -16,5 +17,7 @@ interface BufferooDataStore {
     fun saveBufferoos(bufferoos: List<BufferooEntity>): Completable
 
     fun getBufferoos(): Flowable<List<BufferooEntity>>
+
+    fun isCached(): Single<Boolean>
 
 }

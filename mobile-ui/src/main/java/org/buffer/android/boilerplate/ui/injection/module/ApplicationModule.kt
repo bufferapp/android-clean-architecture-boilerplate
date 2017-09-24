@@ -96,7 +96,6 @@ open class ApplicationModule {
     internal fun provideBufferoosDatabase(application: Application): BufferoosDatabase {
         return Room.databaseBuilder(application.applicationContext,
                 BufferoosDatabase::class.java, "bufferoos.db")
-                .allowMainThreadQueries()
                 .build()
     }
 

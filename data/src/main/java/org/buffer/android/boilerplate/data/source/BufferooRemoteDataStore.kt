@@ -2,6 +2,7 @@ package org.buffer.android.boilerplate.data.source
 
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.data.repository.BufferooDataStore
 import org.buffer.android.boilerplate.data.repository.BufferooRemote
@@ -27,6 +28,10 @@ open class BufferooRemoteDataStore @Inject constructor(private val bufferooRemot
      */
     override fun getBufferoos(): Flowable<List<BufferooEntity>> {
         return bufferooRemote.getBufferoos()
+    }
+
+    override fun isCached(): Single<Boolean> {
+        throw UnsupportedOperationException()
     }
 
 }

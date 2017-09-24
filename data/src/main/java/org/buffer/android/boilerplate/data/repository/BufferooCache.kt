@@ -2,6 +2,7 @@ package org.buffer.android.boilerplate.data.repository
 
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 
 /**
@@ -32,7 +33,7 @@ interface BufferooCache {
      * *
      * @return true if the element is cached, otherwise false.
      */
-    fun isCached(): Boolean
+    fun isCached(): Single<Boolean>
 
     /**
      * Checks if an element (User) exists in the cache.

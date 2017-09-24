@@ -2,6 +2,7 @@ package org.buffer.android.boilerplate.data.source
 
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
+import io.reactivex.Single
 import org.buffer.android.boilerplate.data.repository.BufferooCache
 import org.junit.Before
 import org.junit.Test
@@ -29,24 +30,24 @@ class BufferooDataStoreFactoryTest {
     //<editor-fold desc="Retrieve Data Store">
     @Test
     fun retrieveDataStoreWhenNotCachedReturnsRemoteDataStore() {
-        stubBufferooCacheIsCached(false)
-        val bufferooDataStore = bufferooDataStoreFactory.retrieveDataStore()
+        stubBufferooCacheIsCached(Single.just(false))
+        val bufferooDataStore = bufferooDataStoreFactory.retrieveDataStore(false)
         assert(bufferooDataStore is BufferooRemoteDataStore)
     }
 
     @Test
     fun retrieveDataStoreWhenCacheExpiredReturnsRemoteDataStore() {
-        stubBufferooCacheIsCached(true)
+        stubBufferooCacheIsCached(Single.just(true))
         stubBufferooCacheIsExpired(true)
-        val bufferooDataStore = bufferooDataStoreFactory.retrieveDataStore()
+        val bufferooDataStore = bufferooDataStoreFactory.retrieveDataStore(true)
         assert(bufferooDataStore is BufferooRemoteDataStore)
     }
 
     @Test
     fun retrieveDataStoreReturnsCacheDataStore() {
-        stubBufferooCacheIsCached(true)
+        stubBufferooCacheIsCached(Single.just(true))
         stubBufferooCacheIsExpired(false)
-        val bufferooDataStore = bufferooDataStoreFactory.retrieveDataStore()
+        val bufferooDataStore = bufferooDataStoreFactory.retrieveDataStore(true)
         assert(bufferooDataStore is BufferooCacheDataStore)
     }
     //</editor-fold>
@@ -68,9 +69,9 @@ class BufferooDataStoreFactoryTest {
     //</editor-fold>
 
     //<editor-fold desc="Stub helper methods">
-    private fun stubBufferooCacheIsCached(isCached: Boolean) {
+    private fun stubBufferooCacheIsCached(single: Single<Boolean>) {
         whenever(bufferooCache.isCached())
-                .thenReturn(isCached)
+                .thenReturn(single)
     }
 
     private fun stubBufferooCacheIsExpired(isExpired: Boolean) {

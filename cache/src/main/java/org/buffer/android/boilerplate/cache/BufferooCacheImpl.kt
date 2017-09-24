@@ -2,6 +2,7 @@ package org.buffer.android.boilerplate.cache
 
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 import org.buffer.android.boilerplate.cache.db.BufferoosDatabase
 import org.buffer.android.boilerplate.cache.mapper.BufferooEntityMapper
 import org.buffer.android.boilerplate.cache.model.CachedBufferoo
@@ -65,8 +66,10 @@ class BufferooCacheImpl @Inject constructor(val bufferoosDatabase: BufferoosData
     /**
      * Checked whether there are instances of [CachedBufferoo] stored in the cache
      */
-    override fun isCached(): Boolean {
-        return bufferoosDatabase.cachedBufferooDao().getBufferoos().isNotEmpty()
+    override fun isCached(): Single<Boolean> {
+        return Single.defer {
+            Single.just(bufferoosDatabase.cachedBufferooDao().getBufferoos().isNotEmpty())
+        }
     }
 
     /**

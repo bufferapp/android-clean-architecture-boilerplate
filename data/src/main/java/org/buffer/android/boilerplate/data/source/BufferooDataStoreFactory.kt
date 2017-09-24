@@ -16,8 +16,8 @@ open class BufferooDataStoreFactory @Inject constructor(
      * Returns a DataStore based on whether or not there is content in the cache and the cache
      * has not expired
      */
-    open fun retrieveDataStore(): BufferooDataStore {
-        if (bufferooCache.isCached() && !bufferooCache.isExpired()) {
+    open fun retrieveDataStore(isCached: Boolean): BufferooDataStore {
+        if (isCached && !bufferooCache.isExpired()) {
             return retrieveCacheDataStore()
         }
         return retrieveRemoteDataStore()

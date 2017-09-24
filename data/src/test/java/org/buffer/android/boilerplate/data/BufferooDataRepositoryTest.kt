@@ -3,6 +3,7 @@ package org.buffer.android.boilerplate.data
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 import org.buffer.android.boilerplate.data.mapper.BufferooMapper
 import org.buffer.android.boilerplate.data.model.BufferooEntity
 import org.buffer.android.boilerplate.data.repository.BufferooDataStore
@@ -87,16 +88,20 @@ class BufferooDataRepositoryTest {
     //<editor-fold desc="Get Bufferoos">
     @Test
     fun getBufferoosCompletes() {
+        stubBufferooCacheDataStoreIsCached(Single.just(true))
         stubBufferooDataStoreFactoryRetrieveDataStore(bufferooCacheDataStore)
         stubBufferooCacheDataStoreGetBufferoos(Flowable.just(
                 BufferooFactory.makeBufferooEntityList(2)))
+        stubBufferooCacheSaveBufferoos(Completable.complete())
         val testObserver = bufferooDataRepository.getBufferoos().test()
         testObserver.assertComplete()
     }
 
     @Test
     fun getBufferoosReturnsData() {
+        stubBufferooCacheDataStoreIsCached(Single.just(true))
         stubBufferooDataStoreFactoryRetrieveDataStore(bufferooCacheDataStore)
+        stubBufferooCacheSaveBufferoos(Completable.complete())
         val bufferoos = BufferooFactory.makeBufferooList(2)
         val bufferooEntities = BufferooFactory.makeBufferooEntityList(2)
         bufferoos.forEachIndexed { index, bufferoo ->
@@ -130,6 +135,11 @@ class BufferooDataRepositoryTest {
                 .thenReturn(completable)
     }
 
+    private fun stubBufferooCacheDataStoreIsCached(single: Single<Boolean>) {
+        whenever(bufferooCacheDataStore.isCached())
+                .thenReturn(single)
+    }
+
     private fun stubBufferooCacheDataStoreGetBufferoos(single: Flowable<List<BufferooEntity>>) {
         whenever(bufferooCacheDataStore.getBufferoos())
                 .thenReturn(single)
@@ -156,7 +166,7 @@ class BufferooDataRepositoryTest {
     }
 
     private fun stubBufferooDataStoreFactoryRetrieveDataStore(dataStore: BufferooDataStore) {
-        whenever(bufferooDataStoreFactory.retrieveDataStore())
+        whenever(bufferooDataStoreFactory.retrieveDataStore(any()))
                 .thenReturn(dataStore)
     }
 
