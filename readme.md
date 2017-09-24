@@ -10,7 +10,7 @@ The caching layer now also uses Room.
 Welcome 👋 We hope this boilerplate is not only helpful to other developers, but also that it helps to educate in the area of architecture. We created this boilerplate for a few reasons:
 
 1. To experiment with modularisation
-2. TO experiment with the Android Architecture Components
+2. To experiment with the Android Architecture Components
 3. To share some approaches to clean architecture, especially as we've been [talking a lot about it](https://academy.realm.io/posts/converting-an-app-to-use-clean-architecture/)
 4. To use as a starting point in future projects where clean architecture feels appropriate
 
@@ -50,7 +50,7 @@ Clean Architecture will not be appropriate for every project, so it is down to y
 
 The architecture of the project follows the principles of Clean Archicture. Here's how the sample project implements it:
 
-![architecture](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/architecture.png?raw=true)
+![architecture](https://github.com/bufferapp/clean-architecture-components-boilerplate/blob/master/art/architecture.png?raw=true)
 
 The sample app when run will show you a simple list of all the Bufferoos (Buffer team members!).
 <p align="center">
@@ -67,7 +67,7 @@ This layer makes use of the Android Framework and is used to create all of our U
 
 ### Presentation
 
-This layer's responsibilty is to handle the presentation of the User Interface, but at the same time knows nothing about the user interface itself. This layer has no dependance on the Android Framework, it is a pure Kotlin module. Each ViewModel class that is created implements the ViewModel class found within the Architecture components library. This ViewModel can then be used by the UI layer to communicate with UseCases and retrieve data. The [BrowseBufferoosViewModel]() returns an instance of a Resource which contains data that can be used by the UI - this includes the [ResourceState](), data to be used by the UI and a message if required (for error states).
+This layer's responsibilty is to handle the presentation of the User Interface, but at the same time knows nothing about the user interface itself. This layer has no dependance on the Android Framework, it is a pure Kotlin module. Each ViewModel class that is created implements the ViewModel class found within the Architecture components library. This ViewModel can then be used by the UI layer to communicate with UseCases and retrieve data. The [BrowseBufferoosViewModel](https://github.com/bufferapp/clean-architecture-components-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/browse/BrowseBufferoosViewModel.kt) returns an instance of a [Resource](https://github.com/bufferapp/clean-architecture-components-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/data/Resource.kt) which contains data that can be used by the UI - this includes the [ResourceState](https://github.com/bufferapp/clean-architecture-components-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/data/ResourceState.kt), data to be used by the UI and a message if required (for error states).
 
 The ViewModels use an instance of a [FlowableUseCase](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/FlowableUseCase.kt) from the Domain layer to retrieve data. Note here that there is no direct name reference to the UseCase that we are using - we do inject an instance of the [GetBufferoos](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/browse/GetBufferoos.kt) UseCase, however.
 
