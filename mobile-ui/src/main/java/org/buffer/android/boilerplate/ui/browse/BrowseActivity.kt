@@ -1,6 +1,7 @@
 package org.buffer.android.boilerplate.ui.browse
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import android.view.View
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_browse.*
 import org.buffer.android.boilerplate.presentation.browse.BrowseBufferoosViewModel
+import org.buffer.android.boilerplate.presentation.browse.BrowseBufferoosViewModelFactory
 import org.buffer.android.boilerplate.presentation.data.ResourceState
 import org.buffer.android.boilerplate.presentation.data.Resource
 import org.buffer.android.boilerplate.presentation.model.BufferooView
@@ -21,12 +23,17 @@ class BrowseActivity: AppCompatActivity() {
 
     @Inject lateinit var browseAdapter: BrowseAdapter
     @Inject lateinit var mapper: BufferooMapper
-    @Inject lateinit var browseBufferoosViewModel: BrowseBufferoosViewModel
+    @Inject lateinit var viewModelFactory: BrowseBufferoosViewModelFactory
+    private lateinit var browseBufferoosViewModel: BrowseBufferoosViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_browse)
         AndroidInjection.inject(this)
+
+        browseBufferoosViewModel = ViewModelProviders.of(this, viewModelFactory)
+                .get(BrowseBufferoosViewModel::class.java)
+
         setupBrowseRecycler()
         setupViewListeners()
     }
