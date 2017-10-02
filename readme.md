@@ -48,7 +48,7 @@ Clean Architecture will not be appropriate for every project, so it is down to y
 
 ## Architecture
 
-The architecture of the project follows the principles of Clean Archicture. Here's how the sample project implements it:
+The architecture of the project follows the principles of Clean Architecture. Here's how the sample project implements it:
 
 ![architecture](https://github.com/bufferapp/clean-architecture-components-boilerplate/blob/master/art/architecture.png?raw=true)
 
@@ -67,7 +67,7 @@ This layer makes use of the Android Framework and is used to create all of our U
 
 ### Presentation
 
-This layer's responsibilty is to handle the presentation of the User Interface, but at the same time knows nothing about the user interface itself. This layer has no dependance on the Android Framework, it is a pure Kotlin module. Each ViewModel class that is created implements the ViewModel class found within the Architecture components library. This ViewModel can then be used by the UI layer to communicate with UseCases and retrieve data. The [BrowseBufferoosViewModel](https://github.com/bufferapp/clean-architecture-components-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/browse/BrowseBufferoosViewModel.kt) returns an instance of a [Resource](https://github.com/bufferapp/clean-architecture-components-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/data/Resource.kt) which contains data that can be used by the UI - this includes the [ResourceState](https://github.com/bufferapp/clean-architecture-components-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/data/ResourceState.kt), data to be used by the UI and a message if required (for error states).
+This layer's responsibility is to handle the presentation of the User Interface, but at the same time knows nothing about the user interface itself. This layer has no dependence on the Android Framework, it is a pure Kotlin module. Each ViewModel class that is created implements the ViewModel class found within the Architecture components library. This ViewModel can then be used by the UI layer to communicate with UseCases and retrieve data. The [BrowseBufferoosViewModel](https://github.com/bufferapp/clean-architecture-components-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/browse/BrowseBufferoosViewModel.kt) returns an instance of a [Resource](https://github.com/bufferapp/clean-architecture-components-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/data/Resource.kt) which contains data that can be used by the UI - this includes the [ResourceState](https://github.com/bufferapp/clean-architecture-components-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/data/ResourceState.kt), data to be used by the UI and a message if required (for error states).
 
 The ViewModels use an instance of a [FlowableUseCase](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/FlowableUseCase.kt) from the Domain layer to retrieve data. Note here that there is no direct name reference to the UseCase that we are using - we do inject an instance of the [GetBufferoos](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/browse/GetBufferoos.kt) UseCase, however.
 
@@ -107,7 +107,7 @@ The data model for this layer is the [CachedBufferoo](https://github.com/buffera
 
 We will be happy to answer any questions that you may have on this approach, and if you want to lend a hand with the boilerplate then please feel free to submit an issue and/or pull request 🙂
 
-Again to note, use Clean Architecture where appropriate. This is example can appear as over-architectured for what it is - but it is an example only. The same can be said for individual models for each layer, this decision is down to you. In this example, the data used for ever model is exactly the same, so some may argue that "hey, maybe we don't need to map between the presentation and user-interface layer". Or maybe you don't want to modularise your data layer into data/remote/cache and want to just have it in a single 'data' module. That decision is down to you and the the project that you are working on 🙌🏻
+Again to note, use Clean Architecture where appropriate. This is example can appear as over-architectured for what it is - but it is an example only. The same can be said for individual models for each layer, this decision is down to you. In this example, the data used for every model is exactly the same, so some may argue that "hey, maybe we don't need to map between the presentation and user-interface layer". Or maybe you don't want to modularise your data layer into data/remote/cache and want to just have it in a single 'data' module. That decision is down to you and the project that you are working on 🙌🏻
 
 ## Thanks
 
