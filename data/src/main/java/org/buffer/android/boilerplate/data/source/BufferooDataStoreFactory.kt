@@ -24,14 +24,14 @@ open class BufferooDataStoreFactory @Inject constructor(
     }
 
     /**
-     * Return an instance of the Remote Data Store
+     * Return an instance of the Cache Data Store
      */
     open fun retrieveCacheDataStore(): BufferooDataStore {
         return bufferooCacheDataStore
     }
 
     /**
-     * Return an instance of the Cache Data Store
+     * Return an instance of the Remote Data Store
      */
     open fun retrieveRemoteDataStore(): BufferooDataStore {
         return bufferooRemoteDataStore
