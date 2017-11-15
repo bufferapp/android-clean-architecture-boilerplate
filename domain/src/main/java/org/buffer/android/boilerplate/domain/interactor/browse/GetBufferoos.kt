@@ -14,9 +14,9 @@ import javax.inject.Inject
 open class GetBufferoos @Inject constructor(val bufferooRepository: BufferooRepository,
                                             threadExecutor: ThreadExecutor,
                                             postExecutionThread: PostExecutionThread):
-        SingleUseCase<List<Bufferoo>, Void?>(threadExecutor, postExecutionThread) {
+        SingleUseCase<List<Bufferoo>, Nothing?>(threadExecutor, postExecutionThread) {
 
-    public override fun buildUseCaseObservable(params: Void?): Single<List<Bufferoo>> {
+    public override fun buildUseCaseObservable(params: Nothing?): Single<List<Bufferoo>> {
         return bufferooRepository.getBufferoos()
     }
 

@@ -7,7 +7,7 @@ import org.buffer.android.boilerplate.presentation.mapper.BufferooMapper
 import javax.inject.Inject
 
 class BrowseBufferoosPresenter @Inject constructor(val browseView: BrowseBufferoosContract.View,
-                                                   val getBufferoosUseCase: SingleUseCase<List<Bufferoo>, Void>,
+                                                   val getBufferoosUseCase: SingleUseCase<List<Bufferoo>, Nothing>,
                                                    val bufferooMapper: BufferooMapper):
         BrowseBufferoosContract.Presenter {
 
