@@ -29,15 +29,8 @@ android:
     # Latest artifacts in local repository
     - extra-google-m2repository
     - extra-android-m2repository
-    - android-sdk-license-.+
-    - '.+'
     # Specify at least one system image
     - sys-img-armeabi-v7a-android-$EMULATOR_API_LEVEL
-
-licenses:
-    - 'android-sdk-preview-license-.+'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
 
 before_script:
   - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi armeabi-v7a
