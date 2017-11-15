@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import kotlinx.android.synthetic.main.item_bufferoo.view.*
 import org.buffer.android.boilerplate.ui.R
 import org.buffer.android.boilerplate.ui.model.BufferooViewModel
 import javax.inject.Inject
@@ -39,15 +40,9 @@ class BrowseAdapter @Inject constructor(): RecyclerView.Adapter<BrowseAdapter.Vi
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var avatarImage: ImageView
-        var nameText: TextView
-        var titleText: TextView
-
-        init {
-            avatarImage = view.findViewById(R.id.image_avatar)
-            nameText = view.findViewById(R.id.text_name)
-            titleText = view.findViewById(R.id.text_title)
-        }
+        var avatarImage: ImageView = view.image_avatar
+        var nameText: TextView = view.text_name
+        var titleText: TextView = view.text_title
     }
 
 }
