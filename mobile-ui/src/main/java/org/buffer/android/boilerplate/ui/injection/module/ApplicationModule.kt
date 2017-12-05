@@ -87,12 +87,6 @@ open class ApplicationModule {
 
     @Provides
     @PerApplication
-    internal fun provideViewModelFactory(): ViewModelProvider.Factory {
-        return ViewModelProvider.NewInstanceFactory()
-    }
-
-    @Provides
-    @PerApplication
     internal fun provideBufferoosDatabase(application: Application): BufferoosDatabase {
         return Room.databaseBuilder(application.applicationContext,
                 BufferoosDatabase::class.java, "bufferoos.db")

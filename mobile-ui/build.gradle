@@ -88,7 +88,7 @@ dependencies {
 
     compile presentationDependencies.archRuntime
     compile presentationDependencies.archExtensions
-    compile "android.arch.persistence.room:rxjava2:1.0.0-alpha9-1"
+    compile "android.arch.persistence.room:rxjava2:1.0.0"
     kapt presentationDependencies.archCompiler
 
     testImplementation mobileUiTestDependencies.kotlinJUnit

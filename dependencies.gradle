@@ -13,7 +13,7 @@ ext {
     androidCompileSdkVersion = 26
 
     //Libraries
-    kotlinVersion = '1.1.4-3'
+    kotlinVersion = '1.2.0'
     butterKnifeVersion = '7.0.1'
     recyclerViewVersion = '21.0.3'
     rxJavaVersion = '2.0.2'
@@ -25,7 +25,7 @@ ext {
     okHttpVersion = '3.8.1'
     androidAnnotationsVersion = '21.0.3'
     retrofitVersion = '2.3.0'
-    roomVersion = '1.0.0-alpha9-1'
+    roomVersion = '1.0.0'
     supportLibraryVersion = '26.1.0'
     timberVersion = '4.5.1'
     glideVersion = '4.0.0'
