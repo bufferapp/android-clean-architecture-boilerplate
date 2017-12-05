@@ -23,13 +23,6 @@ class BufferooCacheImpl @Inject constructor(val bufferoosDatabase: BufferoosData
     private val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
 
     /**
-     * Retrieve an instance from the database, used for tests.
-     */
-    internal fun getDatabase(): BufferoosDatabase {
-        return bufferoosDatabase
-    }
-
-    /**
      * Remove all the data from all the tables in the database.
      */
     override fun clearBufferoos(): Completable {
