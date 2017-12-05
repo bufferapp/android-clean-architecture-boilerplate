@@ -54,8 +54,7 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-  - ./gradlew build
-  - ./gradlew build connectedAndroidTest --stacktrace
+  - ./gradlew build test connectedAndroidTest --stacktrace
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
