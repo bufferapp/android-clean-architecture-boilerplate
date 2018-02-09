@@ -1,10 +1,4 @@
 
-allprojects {
-    repositories {
-        jcenter()
-    }
-}
-
 ext {
     //Android
     androidBuildToolsVersion = "26.0.0"
