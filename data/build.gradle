@@ -4,19 +4,18 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 dependencies {
-    def dataDependencies = rootProject.ext.dataDependencies
-    def dataTestDependencies = rootProject.ext.dataTestDependencies
 
     compile project(':domain')
 
-    compile dataDependencies.javaxAnnotation
+    compile DataDependencies.javaxAnnotation
+    compile DataDependencies.javaxAnnotation
 
-    implementation dataDependencies.kotlin
-    implementation dataDependencies.javaxInject
-    implementation dataDependencies.rxKotlin
+    implementation DataDependencies.kotlin
+    implementation DataDependencies.javaxInject
+    implementation DataDependencies.rxKotlin
 
-    testImplementation dataTestDependencies.junit
-    testImplementation dataTestDependencies.kotlinJUnit
-    testImplementation dataTestDependencies.mockito
-    testImplementation dataTestDependencies.assertj
+    testImplementation DataTestDependencies.junit
+    testImplementation DataTestDependencies.kotlinJUnit
+    testImplementation DataTestDependencies.mockito
+    testImplementation DataTestDependencies.assertj
 }

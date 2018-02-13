@@ -4,25 +4,23 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 dependencies {
-    def remoteDependencies = rootProject.ext.remoteDependencies
-    def remoteTestDependencies = rootProject.ext.remoteTestDependencies
 
-    implementation remoteDependencies.javaxAnnotation
+    implementation RemoteDependencies.javaxAnnotation
 
-    implementation remoteDependencies.kotlin
-    implementation remoteDependencies.javaxInject
-    implementation remoteDependencies.rxKotlin
-    implementation remoteDependencies.gson
-    implementation remoteDependencies.okHttp
-    implementation remoteDependencies.okHttpLogger
-    implementation remoteDependencies.retrofit
-    implementation remoteDependencies.retrofitConverter
-    implementation remoteDependencies.retrofitAdapter
+    implementation RemoteDependencies.kotlin
+    implementation RemoteDependencies.javaxInject
+    implementation RemoteDependencies.rxKotlin
+    implementation RemoteDependencies.gson
+    implementation RemoteDependencies.okHttp
+    implementation RemoteDependencies.okHttpLogger
+    implementation RemoteDependencies.retrofit
+    implementation RemoteDependencies.retrofitConverter
+    implementation RemoteDependencies.retrofitAdapter
 
-    testImplementation remoteTestDependencies.junit
-    testImplementation remoteTestDependencies.kotlinJUnit
-    testImplementation remoteTestDependencies.mockito
-    testImplementation remoteTestDependencies.assertj
+    testImplementation RemoteTestDependencies.junit
+    testImplementation RemoteTestDependencies.kotlinJUnit
+    testImplementation RemoteTestDependencies.mockito
+    testImplementation RemoteTestDependencies.assertj
 
     compile project(':data')
 }

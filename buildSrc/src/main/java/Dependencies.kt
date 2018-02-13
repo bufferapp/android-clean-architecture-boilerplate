@@ -6,7 +6,7 @@ object Versions {
     const val androidCompileSdkVersion = 26
     
     //Libraries
-    const val kotlinVersion = "1.1.3-2"
+    const val kotlinVersion = "1.2.21"
     const val butterKnifeVersion = "7.0.1"
     const val recyclerViewVersion = "21.0.3"
     const val rxJavaVersion = "2.0.2"
@@ -42,21 +42,21 @@ object Versions {
 }
 
 
-object domainDependencies {
+object DomainDependencies {
     val javaxAnnotation = "javax.annotation:jsr250-api:${Versions.javaxAnnotationVersion}"
     val javaxInject = "javax.inject:javax.inject:${Versions.javaxInjectVersion}"
     val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlinVersion}"
     val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jre8:${Versions.kotlinVersion}"
 }
 
-object domainTest {
+object DomainTestDependencies {
     val junit = "junit:junit:${Versions.jUnitVersion}"
     val mockito = "com.nhaarman:mockito-kotlin:${Versions.mockitoKotlinVersion}"
     val assertj = "org.assertj:assertj-core:${Versions.assertJVersion}"
     
 }
 
-object presentationDependencies {
+object PresentationDependencies {
     val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.daggerVersion}"
     val dagger = "com.google.dagger:dagger:${Versions.daggerVersion}"
     val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttpVersion}"
@@ -74,7 +74,7 @@ object presentationDependencies {
 }
 
 
-object presentationTestDependencies {
+object PresentationTestDependencies {
     val junit = "junit:junit:${Versions.jUnitVersion}"
     val kotlinJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlinVersion}"
     val assertj = "org.assertj:assertj-core:${Versions.assertJVersion}"
@@ -82,7 +82,7 @@ object presentationTestDependencies {
     val robolectric = "org.robolectric:robolectric:${Versions.robolectricVersion}"
 }
 
-object dataDependencies {
+object DataDependencies {
     val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.daggerVersion}"
     val dagger = "com.google.dagger:dagger:${Versions.daggerVersion}"
     val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttpVersion}"
@@ -100,7 +100,7 @@ object dataDependencies {
 }
 
 
-object dataTestDependencies {
+object DataTestDependencies {
     val junit = "junit:junit:${Versions.jUnitVersion}"
     val kotlinJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlinVersion}"
     val assertj = "org.assertj:assertj-core:${Versions.assertJVersion}"
@@ -108,7 +108,7 @@ object dataTestDependencies {
     val robolectric = "org.robolectric:robolectric:${Versions.robolectricVersion}"
 }
 
-object cacheDependencies {
+object CacheDependencies {
     val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.daggerVersion}"
     val dagger = "com.google.dagger:dagger:${Versions.daggerVersion}"
     val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
@@ -123,7 +123,7 @@ object cacheDependencies {
 }
 
 
-object cacheTestDependencies {
+object CacheTestDependencies {
     val junit = "junit:junit:${Versions.jUnitVersion}"
     val kotlinJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlinVersion}"
     val assertj = "org.assertj:assertj-core:${Versions.assertJVersion}"
@@ -136,7 +136,7 @@ object cacheTestDependencies {
 }
 
 
-object remoteDependencies {
+object RemoteDependencies {
     val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.daggerVersion}"
     val dagger = "com.google.dagger:dagger:${Versions.daggerVersion}"
     val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
@@ -153,7 +153,7 @@ object remoteDependencies {
 }
 
 
-object remoteTestDependencies {
+object RemoteTestDependencies {
     val junit = "junit:junit:${Versions.jUnitVersion}"
     val kotlinJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlinVersion}"
     val assertj = "org.assertj:assertj-core:${Versions.assertJVersion}"
@@ -163,7 +163,7 @@ object remoteTestDependencies {
 }
 
 
-object mobileUiDependencies {
+object MobileUiDependencies {
     val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.daggerVersion}"
     val dagger = "com.google.dagger:dagger:${Versions.daggerVersion}"
     val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlinVersion}"
@@ -184,7 +184,7 @@ object mobileUiDependencies {
     val glassfishAnnotation = "org.glassfish:javax.annotation:${Versions.glassfishAnnotationVersion}"
 }
 
-object mobileUiTestDependencies {
+object MobileUiTestDependencies {
     val junit = "junit:junit:${Versions.jUnitVersion}"
     val kotlinJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlinVersion}"
     val assertj = "org.assertj:assertj-core:${Versions.assertJVersion}"

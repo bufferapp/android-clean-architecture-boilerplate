@@ -5,14 +5,13 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco-android'
 
 android {
-    def globalConfiguration = rootProject.extensions.getByName("ext")
 
-    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
-    buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
+    compileSdkVersion Versions.androidCompileSdkVersion
+    buildToolsVersion Versions.androidBuildToolsVersion
 
     defaultConfig {
-        minSdkVersion globalConfiguration["androidMinSdkVersion"]
-        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        minSdkVersion Versions.androidMinSdkVersion
+        targetSdkVersion Versions.androidTargetSdkVersion
         multiDexEnabled = true
         testInstrumentationRunner "org.buffer.android.boilerplate.ui.test.TestRunner"
     }
@@ -61,54 +60,52 @@ configurations.all {
 }
 
 dependencies {
-    def mobileUiDependencies = rootProject.ext.mobileUiDependencies
-    def mobileUiTestDependencies = rootProject.ext.mobileUiTestDependencies
 
     implementation project(':presentation')
     implementation project(':data')
     implementation project(':cache')
     implementation project(':remote')
 
-    implementation mobileUiDependencies.javaxAnnotation
+    implementation MobileUiDependencies.javaxAnnotation
 
-    implementation mobileUiDependencies.kotlin
-    implementation mobileUiDependencies.javaxInject
-    implementation mobileUiDependencies.rxKotlin
-    implementation mobileUiDependencies.androidAnnotations
-    implementation mobileUiDependencies.androidSupportV4
-    implementation mobileUiDependencies.androidSupportV13
-    implementation mobileUiDependencies.appCompatV7
-    implementation mobileUiDependencies.supportRecyclerView
-    implementation mobileUiDependencies.supportDesign
-    implementation mobileUiDependencies.timber
-    implementation mobileUiDependencies.rxAndroid
-    implementation mobileUiDependencies.glide
-    implementation mobileUiDependencies.dagger
-    implementation mobileUiDependencies.daggerSupport
+    implementation MobileUiDependencies.kotlin
+    implementation MobileUiDependencies.javaxInject
+    implementation MobileUiDependencies.rxKotlin
+    implementation MobileUiDependencies.androidAnnotations
+    implementation MobileUiDependencies.androidSupportV4
+    implementation MobileUiDependencies.androidSupportV13
+    implementation MobileUiDependencies.appCompatV7
+    implementation MobileUiDependencies.supportRecyclerView
+    implementation MobileUiDependencies.supportDesign
+    implementation MobileUiDependencies.timber
+    implementation MobileUiDependencies.rxAndroid
+    implementation MobileUiDependencies.glide
+    implementation MobileUiDependencies.dagger
+    implementation MobileUiDependencies.daggerSupport
 
-    testImplementation mobileUiTestDependencies.kotlinJUnit
+    testImplementation MobileUiTestDependencies.kotlinJUnit
 
-    kapt mobileUiDependencies.daggerCompiler
-    kapt mobileUiDependencies.daggerProcessor
-    compileOnly mobileUiDependencies.glassfishAnnotation
+    kapt MobileUiDependencies.daggerCompiler
+    kapt MobileUiDependencies.daggerProcessor
+    compileOnly MobileUiDependencies.glassfishAnnotation
 
     // Instrumentation test dependencies
-    androidTestImplementation mobileUiTestDependencies.junit
-    androidTestImplementation mobileUiTestDependencies.mockito
-    androidTestImplementation mobileUiTestDependencies.mockitoAndroid
-    androidTestImplementation (mobileUiTestDependencies.espressoCore) {
+    androidTestImplementation MobileUiTestDependencies.junit
+    androidTestImplementation MobileUiTestDependencies.mockito
+    androidTestImplementation MobileUiTestDependencies.mockitoAndroid
+    androidTestImplementation (MobileUiTestDependencies.espressoCore) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation (mobileUiTestDependencies.androidRunner) {
+    androidTestImplementation (MobileUiTestDependencies.androidRunner) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation (mobileUiTestDependencies.androidRules) {
+    androidTestImplementation (MobileUiTestDependencies.androidRules) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation (mobileUiTestDependencies.espressoIntents) {
+    androidTestImplementation (MobileUiTestDependencies.espressoIntents) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation(mobileUiTestDependencies.espressoContrib) {
+    androidTestImplementation(MobileUiTestDependencies.espressoContrib) {
         exclude module: 'appcompat'
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
@@ -118,6 +115,6 @@ dependencies {
         exclude module: 'design'
     }
 
-    kaptTest mobileUiDependencies.daggerCompiler
-    kaptAndroidTest mobileUiDependencies.daggerCompiler
+    kaptTest MobileUiDependencies.daggerCompiler
+    kaptAndroidTest MobileUiDependencies.daggerCompiler
 }

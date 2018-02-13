@@ -10,19 +10,16 @@ configurations.all {
 }
 
 dependencies {
-    def presentationDependencies = rootProject.ext.cacheDependencies
-    def presentationTestDependencies = rootProject.ext.cacheTestDependencies
+    compile PresentationDependencies.javaxAnnotation
 
-    compile presentationDependencies.javaxAnnotation
+    implementation PresentationDependencies.kotlin
+    implementation PresentationDependencies.javaxInject
+    implementation PresentationDependencies.rxKotlin
 
-    implementation presentationDependencies.kotlin
-    implementation presentationDependencies.javaxInject
-    implementation presentationDependencies.rxKotlin
-
-    testImplementation presentationTestDependencies.junit
-    testImplementation presentationTestDependencies.mockito
-    testImplementation presentationTestDependencies.assertj
-    testImplementation presentationTestDependencies.robolectric
+    testImplementation PresentationTestDependencies.junit
+    testImplementation PresentationTestDependencies.mockito
+    testImplementation PresentationTestDependencies.assertj
+    testImplementation PresentationTestDependencies.robolectric
 
     compile project(':domain')
 }

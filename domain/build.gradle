@@ -10,16 +10,14 @@ configurations.all {
 }
 
 dependencies {
-    def domainDependencies = rootProject.ext.domainDependencies
-    def domainTestDependencies = rootProject.ext.domainTestDependencies
 
-    implementation domainDependencies.javaxAnnotation
-    implementation domainDependencies.javaxInject
-    implementation domainDependencies.rxKotlin
-    implementation domainDependencies.kotlin
+    implementation DomainDependencies.javaxAnnotation
+    implementation DomainDependencies.javaxInject
+    implementation DomainDependencies.rxKotlin
+    implementation DomainDependencies.kotlin
 
-    testImplementation domainTestDependencies.junit
-    testImplementation domainTestDependencies.mockito
-    testImplementation domainTestDependencies.assertj
+    testImplementation DomainTestDependencies.junit
+    testImplementation DomainTestDependencies.mockito
+    testImplementation DomainTestDependencies.assertj
 
 }

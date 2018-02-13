@@ -2,14 +2,13 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    def globalConfiguration = rootProject.extensions.getByName("ext")
 
-    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
-    buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
+    compileSdkVersion Versions.androidCompileSdkVersion
+    buildToolsVersion Versions.androidBuildToolsVersion
 
     defaultConfig {
-        minSdkVersion globalConfiguration["androidMinSdkVersion"]
-        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        minSdkVersion Versions.androidMinSdkVersion
+        targetSdkVersion Versions.androidTargetSdkVersion
         multiDexEnabled = true
     }
 
@@ -37,7 +36,8 @@ android {
         abortOnError false
         ignoreWarnings true
         disable 'InvalidPackage'            //Some libraries have issues with this.
-        disable 'OldTargetApi'              //Lint gives this warning but SDK 20 would be Android L Beta.
+        disable 'OldTargetApi'
+        //Lint gives this warning but SDK 20 would be Android L Beta.
         disable 'IconDensities'             //For testing purpose. This is safe to remove.
         disable 'IconMissingDensityFolder'  //For testing purpose. This is safe to remove.
     }
@@ -45,21 +45,19 @@ android {
 }
 
 dependencies {
-    def cacheDependencies = rootProject.ext.cacheDependencies
-    def cacheTestDependencies = rootProject.ext.cacheTestDependencies
 
-    compileOnly cacheDependencies.javaxAnnotation
+    compileOnly CacheDependencies.javaxAnnotation
 
     implementation project(':data')
 
-    implementation cacheDependencies.kotlin
-    implementation cacheDependencies.javaxInject
-    implementation cacheDependencies.rxKotlin
-    implementation cacheDependencies.gson
+    implementation CacheDependencies.kotlin
+    implementation CacheDependencies.javaxInject
+    implementation CacheDependencies.rxKotlin
+    implementation CacheDependencies.gson
 
-    testImplementation cacheTestDependencies.junit
-    testImplementation cacheTestDependencies.kotlinJUnit
-    testImplementation cacheTestDependencies.mockito
-    testImplementation cacheTestDependencies.assertj
-    testImplementation cacheTestDependencies.robolectric
+    testImplementation CacheTestDependencies.junit
+    testImplementation CacheTestDependencies.kotlinJUnit
+    testImplementation CacheTestDependencies.mockito
+    testImplementation CacheTestDependencies.assertj
+    testImplementation CacheTestDependencies.robolectric
 }
