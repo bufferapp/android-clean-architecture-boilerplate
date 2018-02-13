@@ -7,7 +7,7 @@ allprojects {
 
 ext {
     //Android
-    androidBuildToolsVersion = "26.0.0"
+    androidBuildToolsVersion = "27.0.0"
     androidMinSdkVersion = 15
     androidTargetSdkVersion = 26
     androidCompileSdkVersion = 26
@@ -47,7 +47,7 @@ ext {
     dexmakerMockitoversion = '2.2.0'
     runnerVersion = '0.5'
 
-    domainDependencies = [
+     domainDependencies = [
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
             rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
