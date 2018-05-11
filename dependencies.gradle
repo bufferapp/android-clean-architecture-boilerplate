@@ -1,10 +1,4 @@
 
-allprojects {
-    repositories {
-        jcenter()
-    }
-}
-
 ext {
     //Android
     androidBuildToolsVersion = "26.0.0"
@@ -14,9 +8,6 @@ ext {
 
     //Libraries
     kotlinVersion = '1.1.3-2'
-    butterKnifeVersion = '7.0.1'
-    recyclerViewVersion = '21.0.3'
-    rxJavaVersion = '2.0.2'
     rxKotlinVersion = '2.1.0'
     rxAndroidVersion = '2.0.1'
     javaxAnnotationVersion = '1.0'
