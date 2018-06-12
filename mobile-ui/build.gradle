@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'jacoco-android'
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -15,12 +14,6 @@ android {
         targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
         multiDexEnabled = true
         testInstrumentationRunner "org.buffer.android.boilerplate.ui.test.TestRunner"
-    }
-
-    buildTypes {
-        debug {
-            testCoverageEnabled true
-        }
     }
 
     dexOptions {
