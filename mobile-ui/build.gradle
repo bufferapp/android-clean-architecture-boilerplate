@@ -103,6 +103,7 @@ dependencies {
     androidTestImplementation mobileUiTestDependencies.androidRules
     androidTestImplementation mobileUiTestDependencies.espressoIntents
     androidTestImplementation mobileUiTestDependencies.espressoContrib
+    androidTestImplementation mobileUiTestDependencies.appCompat
 
     kaptTest mobileUiDependencies.daggerCompiler
     kaptAndroidTest mobileUiDependencies.daggerCompiler

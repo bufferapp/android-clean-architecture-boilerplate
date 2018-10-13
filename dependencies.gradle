@@ -20,6 +20,7 @@ ext {
     glideVersion = '4.8.0'
     daggerVersion = '2.16' // As of today, 2.17 does not work. See https://issuetracker.google.com/issues/115738511
     glassfishAnnotationVersion = '10.0-b28'
+    appCompatVersion = '1.0.0'
 
     //Testing
     robolectricVersion = '3.4.2'
@@ -165,7 +166,7 @@ ext {
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
             androidAnnotations: "androidx.annotation:annotation:1.0.0",
-            appCompat:          "androidx.appcompat:appcompat:1.0.0",
+            appCompat:          "androidx.appcompat:appcompat:${appCompatVersion}",
             supportRecyclerView:"androidx.recyclerview:recyclerview:1.0.0",
             supportDesign:      "com.google.android.material:material:1.0.0-rc01",
             timber:             "com.jakewharton.timber:timber:${timberVersion}",
@@ -186,6 +187,7 @@ ext {
             espressoCore:       "com.android.support.test.espresso:espresso-core:${espressoVersion}",
             espressoIntents:    "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
             espressoContrib:    "com.android.support.test.espresso:espresso-contrib:${espressoVersion}",
+            appCompat:          "androidx.appcompat:appcompat:${appCompatVersion}",
             androidRunner:      "com.android.support.test:runner:${runnerVersion}",
             androidRules:       "com.android.support.test:rules:${runnerVersion}"
     ]
