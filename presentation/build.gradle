@@ -21,6 +21,7 @@ dependencies {
 
     testImplementation presentationTestDependencies.junit
     testImplementation presentationTestDependencies.mockito
+    testImplementation presentationTestDependencies.kotlinReflect
     testImplementation presentationTestDependencies.assertj
     testImplementation presentationTestDependencies.robolectric
 

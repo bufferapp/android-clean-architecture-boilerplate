@@ -18,5 +18,6 @@ dependencies {
     testImplementation dataTestDependencies.junit
     testImplementation dataTestDependencies.kotlinJUnit
     testImplementation dataTestDependencies.mockito
+    testImplementation dataTestDependencies.kotlinReflect
     testImplementation dataTestDependencies.assertj
 }

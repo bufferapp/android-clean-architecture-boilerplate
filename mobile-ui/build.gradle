@@ -96,6 +96,7 @@ dependencies {
     // Instrumentation test dependencies
     androidTestImplementation mobileUiTestDependencies.junit
     androidTestImplementation mobileUiTestDependencies.mockito
+    androidTestImplementation mobileUiTestDependencies.kotlinReflect
     androidTestImplementation mobileUiTestDependencies.mockitoAndroid
     androidTestImplementation mobileUiTestDependencies.espressoCore
     androidTestImplementation mobileUiTestDependencies.androidRunner
