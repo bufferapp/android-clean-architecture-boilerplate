@@ -77,12 +77,12 @@ dependencies {
     implementation mobileUiDependencies.kotlin
     implementation mobileUiDependencies.javaxInject
     implementation mobileUiDependencies.rxKotlin
-    implementation mobileUiDependencies.androidAnnotations
-    implementation mobileUiDependencies.androidSupportV4
-    implementation mobileUiDependencies.androidSupportV13
-    implementation mobileUiDependencies.appCompatV7
-    implementation mobileUiDependencies.supportRecyclerView
-    implementation mobileUiDependencies.supportDesign
+    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation mobileUiDependencies.timber
     implementation mobileUiDependencies.rxAndroid
     implementation mobileUiDependencies.glide
@@ -99,27 +99,11 @@ dependencies {
     androidTestImplementation mobileUiTestDependencies.junit
     androidTestImplementation mobileUiTestDependencies.mockito
     androidTestImplementation mobileUiTestDependencies.mockitoAndroid
-    androidTestImplementation (mobileUiTestDependencies.espressoCore) {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestImplementation (mobileUiTestDependencies.androidRunner) {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestImplementation (mobileUiTestDependencies.androidRules) {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestImplementation (mobileUiTestDependencies.espressoIntents) {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-    androidTestImplementation(mobileUiTestDependencies.espressoContrib) {
-        exclude module: 'appcompat'
-        exclude module: 'appcompat-v7'
-        exclude module: 'support-v4'
-        exclude module: 'support-v13'
-        exclude module: 'support-annotations'
-        exclude module: 'recyclerview-v7'
-        exclude module: 'design'
-    }
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta02'
+    androidTestImplementation 'androidx.test:runner:1.1.0-beta02'
+    androidTestImplementation 'androidx.test:rules:1.1.0-beta02'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0-beta02'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.0-beta02'
 
     kaptTest mobileUiDependencies.daggerCompiler
     kaptAndroidTest mobileUiDependencies.daggerCompiler

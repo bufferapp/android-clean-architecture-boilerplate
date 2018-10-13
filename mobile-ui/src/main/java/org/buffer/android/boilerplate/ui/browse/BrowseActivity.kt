@@ -1,8 +1,8 @@
 package org.buffer.android.boilerplate.ui.browse
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_browse.*
