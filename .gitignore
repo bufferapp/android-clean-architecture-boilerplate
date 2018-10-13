@@ -7,7 +7,6 @@
 *iml
 *.iml
 */build
-gradle.properties
 *.apk
 *.ap_
 *.dex
