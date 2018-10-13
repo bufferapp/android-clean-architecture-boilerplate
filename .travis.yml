@@ -16,19 +16,9 @@ env:
 android:
   components:
     - tools
-    - platform-tools
     - android-$EMULATOR_API_LEVEL
     - build-tools-$ANDROID_BUILD_TOOLS_VERSION
     - android-$ANDROID_API_LEVEL
-    # For Google APIs
-    - addon-google_apis-google-$ANDROID_API_LEVEL
-    # Google Play Services
-    - extra-google-google_play_services
-    # Support library
-    - extra-android-support
-    # Latest artifacts in local repository
-    - extra-google-m2repository
-    - extra-android-m2repository
     # Specify at least one system image
     - sys-img-armeabi-v7a-android-$EMULATOR_API_LEVEL
 
