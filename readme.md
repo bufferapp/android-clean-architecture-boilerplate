@@ -65,7 +65,7 @@ When a Presenter is constructed, an instance of this View is passed in. This vie
 
 The presenters use an instance of a [SingleUseCase](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/SingleUseCase.kt) from the Domain layer to retrieve data. Note here that there is no direct name reference to the UseCase that we are using - we do inject an instance of the [GetBufferoos](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/interactor/browse/GetBufferoos.kt) UseCase, however.
 
-The presenter receives data from the Domain layer in the form of a [Bufferoo](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/model/BufferooView.kt). These instances are mapped to instance of this layers model, which is a BufferooView using the [BufferooMapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/mapper/BufferooMapper.kt).
+The presenter receives data from the Domain layer in the form of a [Bufferoo](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/model/BufferooView.kt). These instances are mapped to instance of this layer's model, which is a BufferooView using the [BufferooMapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/presentation/src/main/java/org/buffer/android/boilerplate/presentation/mapper/BufferooMapper.kt).
 
 ### Domain
 
@@ -83,7 +83,7 @@ The Data layer is our access point to external data layers and is used to fetch 
 
 Each of these DataStore classes also references a corresponding [BufferooCache](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/data/src/main/java/org/buffer/android/boilerplate/data/repository/BufferooCache.kt) and [BufferooRemote](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/data/src/main/java/org/buffer/android/boilerplate/data/repository/BufferooRemote.kt) interface, which is used when requesting data from an external data source module.
 
-This layers data model is the [BufferooEntity](https://github.com/bufferapp/android-clean-architecture-boilerplate/tree/master/data/src/main/java/org/buffer/android/boilerplate/data/model). Here the [BufferooMapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/data/src/main/java/org/buffer/android/boilerplate/data/mapper/BufferooMapper.kt) is used to map data to and from a Bufferoo instance from the domain layer and BufferooEntity instance from this layer as required.
+This layer's data model is the [BufferooEntity](https://github.com/bufferapp/android-clean-architecture-boilerplate/tree/master/data/src/main/java/org/buffer/android/boilerplate/data/model). Here the [BufferooMapper](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/data/src/main/java/org/buffer/android/boilerplate/data/mapper/BufferooMapper.kt) is used to map data to and from a Bufferoo instance from the domain layer and BufferooEntity instance from this layer as required.
 
 ### Remote
 
