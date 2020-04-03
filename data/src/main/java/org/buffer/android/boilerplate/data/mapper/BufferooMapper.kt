@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 /**
  * Map a [BufferooEntity] to and from a [Bufferoo] instance when data is moving between
- * this later and the Domain layer
+ * this layer and the Domain layer
  */
 open class BufferooMapper @Inject constructor(): Mapper<BufferooEntity, Bufferoo> {
 
