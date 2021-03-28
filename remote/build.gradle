@@ -1,6 +1,4 @@
-plugins {
-    id 'kotlin'
-}
+apply plugin: 'kotlin'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
