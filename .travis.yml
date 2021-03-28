@@ -7,7 +7,7 @@ env:
   global:
     - ANDROID_API_LEVEL=26
     - EMULATOR_API_LEVEL=22
-    - ANDROID_BUILD_TOOLS_VERSION=26.0.1
+    - ANDROID_BUILD_TOOLS_VERSION=29.0.0
     - ANDROID_ABI=armeabi-v7a
     - ANDROID_TAG=google_apis
     - ANDROID_TARGET=android-$ANDROID_API_LEVEL
@@ -34,7 +34,7 @@ android:
     - sys-img-$ANDROID_ABI-google_apis-$EMULATOR_API_LEVEL
 
 before_script:
-  - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi google_apis/$ANDROID_ABI -c 32M
+  - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi google_apis/$ANDROID_ABI
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
   - sleep 180
