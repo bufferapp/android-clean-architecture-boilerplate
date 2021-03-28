@@ -11,6 +11,7 @@ env:
     - ANDROID_ABI=armeabi-v7a
     - ANDROID_TAG=google_apis
     - ANDROID_TARGET=android-$ANDROID_API_LEVEL
+    - ANDROID_ABI=google_apis/armeabi-v7a
     - ADB_INSTALL_TIMEOUT=20 # minutes (2 minutes by default)
 
 android:
@@ -30,10 +31,10 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
     # Specify at least one system image
-    - sys-img-armeabi-v7a-android-$EMULATOR_API_LEVEL
+    - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API_LEVEL
 
 before_script:
-  - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi armeabi-v7a -c 32M
+  - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi $ANDROID_ABI -c 32M
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
   - sleep 180
