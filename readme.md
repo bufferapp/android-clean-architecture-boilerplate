@@ -42,16 +42,16 @@ Clean Architecture will not be appropriate for every project, so it is down to y
 
 The architecture of the project follows the principles of Clean Architecture. Here's how the sample project implements it:
 
-![architecture](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/architecture.png?raw=true)
+![architecture](./art/architecture.png?raw=true)
 
 The sample app when run will show you a simple list of all the Bufferoos (Buffer team members!).
 <p align="center">
-<img src="https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/device_screenshot.png" alt="Drawing" style="width: 10px;"/>
+<img src="./art/device_screenshot.png" alt="Drawing" style="width: 200px;"/>
 </p>
 
 Let's look at each of the architecture layers and the role each one plays :)
 
-![architecture](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/ui.png?raw=true)
+![architecture](./art/ui.png?raw=true)
 
 ### User Interface
 
@@ -75,7 +75,7 @@ The layer defines the [Bufferoo](https://github.com/bufferapp/android-clean-arch
 
 The Domain layer defines the [BufferooRepository](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/domain/src/main/java/org/buffer/android/boilerplate/domain/repository/BufferooRepository.kt) interface which provides a set of methods for an external layer to implement as the UseCase classes use the interface when requesting data.
 
-![architecture](https://github.com/bufferapp/android-clean-architecture-boilerplate/blob/master/art/data.png?raw=true)
+![architecture](./art/data.png?raw=true)
 
 ### Data
 
